@@ -47,8 +47,8 @@ Segmentation = (function($) {
         self.availableMatches["dimension"] = [];
         self.availableMatches["dimension"]["=="] = self.translations['General_OperationIs'];
         self.availableMatches["dimension"]["!="] = self.translations['General_OperationIsNot'];
-        self.availableMatches["dimension"]["=@"] = self.translations['General_OperationContains'];
-        self.availableMatches["dimension"]["!@"] = self.translations['General_OperationDoesNotContain'];
+        self.availableMatches["dimension"]["=@"] = self.translations['General_OperationContainsCaseInsensitive'];
+        self.availableMatches["dimension"]["!@"] = self.translations['General_OperationDoesNotContainCaseInsensitive'];
 
         segmentation.prototype.setAvailableSegments = function (segments) {
             this.availableSegments = segments;

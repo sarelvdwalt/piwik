@@ -218,11 +218,11 @@ class SegmentExpression
                 $sqlMatch = '<=';
                 break;
             case self::MATCH_CONTAINS:
-                $sqlMatch = 'LIKE';
+                $sqlMatch = 'COLLATE UTF8_GENERAL_CI LIKE';
                 $value    = '%' . $this->escapeLikeString($value) . '%';
                 break;
             case self::MATCH_DOES_NOT_CONTAIN:
-                $sqlMatch = 'NOT LIKE';
+                $sqlMatch = 'COLLATE UTF8_GENERAL_CI NOT LIKE';
                 $value    = '%' . $this->escapeLikeString($value) . '%';
                 $alsoMatchNULLValues = true;
                 break;
