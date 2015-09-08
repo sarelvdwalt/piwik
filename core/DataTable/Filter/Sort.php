@@ -71,8 +71,8 @@ class Sort extends BaseFilter
     /**
      * Sorting method used for sorting numbers
      *
-     * @param array $rowA  array[0 => value of column to sort, 1 => label]
-     * @param array $rowB  array[0 => value of column to sort, 1 => label]
+     * @param array $rowA  array[0 => value of column to sort, 1 => label, 2 => key]
+     * @param array $rowB  array[0 => value of column to sort, 1 => label, 2 => key]
      * @return int
      */
     public function numberSort($rowA, $rowB)
@@ -81,10 +81,22 @@ class Sort extends BaseFilter
             if ($rowA[0] != $rowB[0] || !isset($rowA[1])) {
                 return $this->sign * ($rowA[0] < $rowB[0] ? -1 : 1);
             } else {
-                return -1 * $this->sign * strnatcasecmp($rowA[1], $rowB[1]);
+                $cmp = -1 * $this->sign * strnatcasecmp($rowA[1], $rowB[1]);
+
+                if ($cmp == 0) {
+                    return ($rowA[2] > $rowB[2] ? 1 : -1);
+                }
+
+                return $cmp;
             }
         } elseif (!isset($rowB[0]) && !isset($rowA[0])) {
-            return -1 * $this->sign * strnatcasecmp($rowA[1], $rowB[1]);
+            $cmp = -1 * $this->sign * strnatcasecmp($rowA[1], $rowB[1]);
+
+            if ($cmp == 0) {
+                return ($rowA[2] > $rowB[2] ? 1 : -1);
+            }
+
+            return $cmp;
         } elseif (!isset($rowA[0])) {
             return 1;
         }
@@ -95,49 +107,61 @@ class Sort extends BaseFilter
     /**
      * Sorting method used for sorting values natural
      *
-     * @param mixed $valA
-     * @param mixed $valB
+     * @param array $rowA  array[0 => value of column to sort, 1 => key]
+     * @param array $rowB  array[0 => value of column to sort, 1 => key]
      * @return int
      */
     public function naturalSort($valA, $valB)
     {
-        return !isset($valA)
-        && !isset($valB)
-            ? 0
-            : (!isset($valA)
-                ? 1
-                : (!isset($valB)
-                    ? -1
-                    : $this->sign * strnatcasecmp(
-                        $valA,
-                        $valB
-                    )
-                )
-            );
+        if (!isset($valA[0]) && !isset($valB[0])) {
+            return ($valA[1] > $valB[1] ? 1 : -1);
+        }
+
+        if (!isset($valA[0])) {
+            return 1;
+        }
+
+        if (!isset($valB[0])) {
+            return -1;
+        }
+
+        $cmp = $this->sign * strnatcasecmp($valA[0], $valB[0]);
+
+        if ($cmp == 0) {
+            return ($valA[1] > $valB[1] ? 1 : -1);
+        }
+
+        return $cmp;
     }
 
     /**
      * Sorting method used for sorting values
      *
-     * @param mixed $valA
-     * @param mixed $valB
+     * @param array $rowA  array[0 => value of column to sort, 1 => key]
+     * @param array $rowB  array[0 => value of column to sort, 1 => key]
      * @return int
      */
     public function sortString($valA, $valB)
     {
-        return !isset($valA)
-        && !isset($valB)
-            ? 0
-            : (!isset($valA)
-                ? 1
-                : (!isset($valB)
-                    ? -1
-                    : $this->sign *
-                    strcasecmp($valA,
-                        $valB
-                    )
-                )
-            );
+        if (!isset($valA[0]) && !isset($valB[0])) {
+            return ($valA[1] > $valB[1] ? 1 : -1);
+        }
+
+        if (!isset($valA[0])) {
+            return 1;
+        }
+
+        if (!isset($valB[0])) {
+            return -1;
+        }
+
+        $cmp = $this->sign * strcasecmp($valA[0], $valB[0]);
+
+        if ($cmp == 0) {
+            return ($valA[1] > $valB[1] ? 1 : -1);
+        }
+
+        return $cmp;
     }
 
     protected function getColumnValue(Row $row)
@@ -257,11 +281,11 @@ class Sort extends BaseFilter
         $values = array();
         if ($functionCallback === 'numberSort') {
             foreach ($rows as $key => $row) {
-                $values[$key] = array($this->getColumnValue($row), $row->getColumn('label'));
+                $values[$key] = array($this->getColumnValue($row), $row->getColumn('label'), $key);
             }
         } else {
             foreach ($rows as $key => $row) {
-                $values[$key] = $this->getColumnValue($row);
+                $values[$key] = array($this->getColumnValue($row), $key);
             }
         }
 
