@@ -84,7 +84,7 @@ class Sort extends BaseFilter
                 $cmp = -1 * $this->sign * strnatcasecmp($rowA[1], $rowB[1]);
 
                 if ($cmp == 0) {
-                    return ($rowA[2] > $rowB[2] ? 1 : -1);
+                    return $this->sign * ($rowA[2] > $rowB[2] ? 1 : -1);
                 }
 
                 return $cmp;
@@ -93,7 +93,7 @@ class Sort extends BaseFilter
             $cmp = -1 * $this->sign * strnatcasecmp($rowA[1], $rowB[1]);
 
             if ($cmp == 0) {
-                return ($rowA[2] > $rowB[2] ? 1 : -1);
+                return $this->sign * ($rowA[2] > $rowB[2] ? 1 : -1);
             }
 
             return $cmp;
@@ -114,7 +114,7 @@ class Sort extends BaseFilter
     public function naturalSort($valA, $valB)
     {
         if (!isset($valA[0]) && !isset($valB[0])) {
-            return ($valA[1] > $valB[1] ? 1 : -1);
+            return $this->sign * ($valA[1] > $valB[1] ? 1 : -1);
         }
 
         if (!isset($valA[0])) {
@@ -128,7 +128,7 @@ class Sort extends BaseFilter
         $cmp = $this->sign * strnatcasecmp($valA[0], $valB[0]);
 
         if ($cmp == 0) {
-            return ($valA[1] > $valB[1] ? 1 : -1);
+            return $this->sign * ($valA[1] > $valB[1] ? 1 : -1);
         }
 
         return $cmp;
@@ -144,7 +144,7 @@ class Sort extends BaseFilter
     public function sortString($valA, $valB)
     {
         if (!isset($valA[0]) && !isset($valB[0])) {
-            return ($valA[1] > $valB[1] ? 1 : -1);
+            return $this->sign * ($valA[1] > $valB[1] ? 1 : -1);
         }
 
         if (!isset($valA[0])) {
@@ -158,7 +158,7 @@ class Sort extends BaseFilter
         $cmp = $this->sign * strcasecmp($valA[0], $valB[0]);
 
         if ($cmp == 0) {
-            return ($valA[1] > $valB[1] ? 1 : -1);
+            return $this->sign * ($valA[1] > $valB[1] ? 1 : -1);
         }
 
         return $cmp;
