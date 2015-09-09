@@ -146,7 +146,7 @@ body .ui-tooltip.overlayTooltip {
     font-weight: bold;
 }
 
-#topBars {
+#topLeftBar, #topRightBar {
     display: none;
 }
 

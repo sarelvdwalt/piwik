@@ -19,6 +19,7 @@ menu.prototype =
     adaptSubMenuHeight: function() {
         var subNavHeight = $('.sfHover > ul').outerHeight();
         $('.nav_sep').height(subNavHeight);
+        // TODO adjust submenu height
     },
 
     overMainLI: function () {
