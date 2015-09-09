@@ -74,20 +74,26 @@ table.entityTable tr td a:hover {
     padding: 0;
 
     #header {
-        margin: 0 15px;
-        #topBars {
+        padding: 0 15px;
+        background-color: #3e3e3e;
+        border-bottom: 1px solid #d9d9d9;
+        #topRightBar, #topLeftBar {
             a {
-                color: @theme-color-link;
+                color: white;
                 text-decoration: none;
             }
         }
 
         .topBarElem {
-          padding: 0 3px;
+          &:hover {
+            background-color: #555;
+          }
+          padding: 14px 21px 0px;
+          height: 100%;
           color: @theme-color-text-lighter;
             strong {
                 font-weight: normal;
-                color: @theme-color-text;
+                color: #f8a500;
             }
         }
     }
@@ -101,15 +107,23 @@ table.entityTable tr td a:hover {
     }
 
     .Menu--dashboard {
-        border-top: 1px solid @theme-color-background-lowContrast;
         border-bottom: 0px;
+
+        width: 240px;
+        float: left;
+
         > .Menu-tabList {
             margin: 0;
+            width: 100%;
             a {
-               .font-default(18px, 22px);
-               padding: 14px 28px 11px;
+              width: 100%;
+              font-family: Verdana, sans-serif;
+               .font-default(13px, 21px);
+              padding: 14px 21px 14px;
             }
             > li {
+                display: inline-block;
+                width: 100%;
                 .border-radius(0px);
                 border: 0;
                 background: none;
@@ -121,8 +135,8 @@ table.entityTable tr td a:hover {
                     li {
                         a {
                             color: @theme-color-menu-contrast-text;
-                            .font-default(15px, 18px);
-                            padding: 14px 22px 11px;
+                            .font-default(13px, 16px);
+                            padding: 12px 22px 9px;
                         }
 
                         &:hover,
@@ -137,19 +151,14 @@ table.entityTable tr td a:hover {
                 }
 
                 &.sfActive {
+                    ul {
+                      position: relative;
+                    }
                     > a {
                         color: @theme-color-text;
+                        background-color: #f4f4f4;
                         text-decoration: none;
                         position: relative;
-                        &:after {
-                            content: '';
-                            position: absolute;
-                            bottom: -3px;
-                            left: 0;
-                            width: 100%;
-                            height: 4px;
-                            background: @theme-color-brand;
-                        }
                     }
 
                 }
@@ -163,17 +172,6 @@ table.entityTable tr td a:hover {
                 }
             }
         }
-    }
-
-    .nav_sep {
-        background: @theme-color-menu-contrast-background;
-        min-height: 57px;
-        .border-radius(0px);
-        border-color: @theme-color-background-lowContrast !important;
-        border-top: 0px !important;
-        border-right: 0px !important;
-        border-left: 0px !important;
-        box-shadow: inset 0 2px 4px #d8d8d8;
     }
 
     .widgetize {

@@ -27,7 +27,7 @@ class Menu extends \Piwik\Plugin\Menu
         }
 
         if (Plugin\Manager::getInstance()->isPluginActivated('Feedback')) {
-            $menu->addItem('General_Help', null, array('module' => 'Feedback', 'action' => 'index'));
+            $menu->addItem('icon-help', null, array('module' => 'Feedback', 'action' => 'index'), $order = 999);
         }
 
         if (Piwik::isUserIsAnonymous()) {
@@ -42,9 +42,9 @@ class Menu extends \Piwik\Plugin\Menu
 
         $module = $this->getLoginModule();
         if (Piwik::isUserIsAnonymous()) {
-            $menu->addItem('Login_LogIn', null, array('module' => $module, 'action' => false), 999);
+            $menu->addItem('Login_LogIn', null, array('module' => $module, 'action' => false), 1000);
         } else {
-            $menu->addItem('General_Logout', null, array('module' => $module, 'action' => 'logout', 'idSite' => null), 999);
+            $menu->addItem('plugins/Morpheus/images/signout.png', null, array('module' => $module, 'action' => 'logout', 'idSite' => null), 1000);
         }
     }
 
