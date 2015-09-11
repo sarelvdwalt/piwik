@@ -171,6 +171,7 @@ class CoreHome extends \Piwik\Plugin
         $translationKeys[] = 'General_Loading';
         $translationKeys[] = 'General_Show';
         $translationKeys[] = 'General_Hide';
+        $translationKeys[] = 'General_Website';
         $translationKeys[] = 'Intl_YearShort';
         $translationKeys[] = 'General_MultiSitesSummary';
         $translationKeys[] = 'CoreHome_YouAreUsingTheLatestVersion';

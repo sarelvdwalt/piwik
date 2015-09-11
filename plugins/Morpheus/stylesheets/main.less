@@ -76,7 +76,6 @@ table.entityTable tr td a:hover {
     #header {
         padding: 0 15px;
         background-color: #3e3e3e;
-        border-bottom: 1px solid #d9d9d9;
         #topRightBar, #topLeftBar {
             a {
                 color: white;
@@ -99,7 +98,6 @@ table.entityTable tr td a:hover {
     }
 
     .top_bar_sites_selector {
-        margin-right: 10px;
         label {
             padding-top: 9px;
             .font-default(13px, 15px);
@@ -128,7 +126,7 @@ table.entityTable tr td a:hover {
                 border: 0;
                 background: none;
                 border-right: 1px solid @theme-color-background-lowContrast;
-                margin-bottom: -1px;
+                margin-bottom: -2px;
                 border-bottom: 0px;
 
                 > ul {
@@ -137,13 +135,17 @@ table.entityTable tr td a:hover {
                             color: @theme-color-menu-contrast-text;
                             .font-default(13px, 16px);
                             padding: 12px 22px 9px;
+                          &:hover {
+                            color: #333;
+                          }
                         }
 
                         &:hover,
                         &.sfHover {
                             a {
-                                color: @theme-color-menu-contrast-textActive;
-                                font-weight: normal;
+                                color: #333;
+                                font-weight: bold;
+                                font-size: 12px;
                             }
 
                         }
@@ -156,7 +158,7 @@ table.entityTable tr td a:hover {
                     }
                     > a {
                         color: @theme-color-text;
-                        background-color: #f4f4f4;
+                        background-color: #f9f9f9;
                         text-decoration: none;
                         position: relative;
                     }
@@ -195,7 +197,7 @@ table.entityTable tr td a:hover {
       content: '';
       border-left: 4px solid transparent;
       border-right: 4px solid transparent;
-      border-top: 5px solid @theme-color-brand;
+      border-top: 5px solid #333;
       position: absolute;
       top: 3px;
       right: 0;
