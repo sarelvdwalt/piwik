@@ -1,18 +1,25 @@
 {% macro sidebarMenu(sidebarMenu, currentModule, currentAction) %}
     {% if sidebarMenu|length > 1 %}
-        <div class="Menu Menu--admin">
+        <div class="Menu--dashboard">
             <ul class="Menu-tabList">
                 {% for name,submenu in sidebarMenu %}
                     {% if submenu._hasSubmenu %}
-                        <li>
-                            <span>{{ name|translate }}</span>
+                        {% set activeMenu=false %}
+                        {% for sname,url in submenu %}
+                            {% if sname|slice(0,1) != '_' %}
+                               {% if url._url.module == currentModule and (url._url.action is empty or url._url.action == currentAction) %}{% set activeMenu=true %}{% endif %}
+                            {% endif %}
+                        {% endfor %}
+
+                        <li class="{% if activeMenu %}sfActive{% endif %} sfHover">
+                            <a class="menuItem">{{ name|translate }}</a>
                             <ul>
                                 {% for sname,url in submenu %}
                                     {% if sname|slice(0,1) != '_' %}
-                                        <li>
-                                            <a href='index.php{{ url._url|urlRewriteWithParameters }}'
+                                        <li {% if url._url.module == currentModule and (url._url.action is empty or url._url.action == currentAction) %}class='sfHover'{% endif %}>
+                                            <a class="menuItem" href='index.php{{ url._url|urlRewriteWithParameters }}'
                                                target="_self"
-                                               {% if url._url.module == currentModule and (url._url.action is empty or url._url.action == currentAction) %}class='active'{% endif %}>{{ sname|translate }}</a>
+                                              >{{ sname|translate }}</a>
                                         </li>
                                     {% endif %}
                                 {% endfor %}
