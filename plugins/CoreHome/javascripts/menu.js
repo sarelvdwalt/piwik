@@ -43,6 +43,10 @@ menu.prototype =
     init: function () {
         this.menuNode = $('.Menu--dashboard');
 
+        if ($('#content.admin').length) {
+            return;
+        }
+
         this.menuNode.find("li:has(ul),li#Searchmenu").click(this.overMainLI);
 
   //      this.menuNode.find("li:has(ul),li#Searchmenu").hover(this.overMainLI, this.outMainLI);
