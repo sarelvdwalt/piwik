@@ -10,7 +10,7 @@ function initTopControls() {
 
     var siteSelector = $('.sites_selector_in_dashboard');
     if (siteSelector.length) {
-        left = $(siteSelector.first()).outerWidth() + 44;
+        left = $(siteSelector.first()).outerWidth() + 30;
     }
 
     if ($topControlsContainer.length) {
@@ -21,7 +21,7 @@ function initTopControls() {
             }
 
             $control.css('left', left);
-            $control.css('top', 9 + 'px');
+            $control.css('top', 18 + 'px');
 
             if (!$.contains($topControlsContainer[0], this)) {
                 $control.detach().appendTo($topControlsContainer);
