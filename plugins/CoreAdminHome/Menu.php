@@ -51,7 +51,7 @@ class Menu extends \Piwik\Plugin\Menu
                 $url = $this->urlForAction('generalSettings');
             }
 
-            $menu->addItem('CoreAdminHome_Administration', null, $url, 10);
+            $menu->addItem('icon-configure', null, $url, 980);
         }
     }
 

@@ -11,11 +11,53 @@ table.dataTable tr td .sites_autocomplete a {
   width: auto;
 }
 
-.sites_selector_in_dashboard {
-  margin-top:10px;
+#root .top_bar_sites_selector.sites_selector_in_dashboard {
+  margin-top:9px;
+
+  label {
+    font-size: 11px;
+    text-transform: uppercase;
+    line-height: normal;
+  }
+
+  .sites_autocomplete {
+    margin-left: 0;
+    width: auto;
+
+    .custom_select_main_link {
+      padding-top: 9px;
+      padding-left: 10px;
+      padding-bottom: 5px;
+    }
+    .custom_select {
+      border: 1px solid #f9f9f9;
+      background-color: transparent;
+      font-size: 11px;
+      width: auto;
+
+
+      &:hover {
+        background: #fff;
+        border: 1px solid #d9d9d9;
+      }
+    }
+  }
+
+  .sites_autocomplete--dropdown .custom_select_main_link:not(.loading) {
+    > span {
+      padding: 0;
+    }
+    &:before {
+      border-top-color: #333;
+      top: 3px;
+      right: -12px;
+    }
+  }
 }
 .top_bar_sites_selector {
-  float: right
+  position: absolute;
+  margin-left: 256px;
+  z-index: 9;
 }
 
 .top_bar_sites_selector > label {
@@ -44,7 +86,7 @@ table.dataTable tr td .sites_autocomplete a {
   color: #255792;
   border-radius: 4px;
   cursor: pointer;
-  width: 205px;
+  width: 230px;
 }
 
 .sites_autocomplete .custom_select_main_link {
@@ -134,7 +176,7 @@ table.dataTable tr td .sites_autocomplete a {
 
 }
 .sites_autocomplete {
-  width: 205px;
+  width: 230px;
 }
 
 .sites_autocomplete .custom_select_search .but {

@@ -27,17 +27,17 @@ class Menu extends \Piwik\Plugin\Menu
         }
 
         if (Plugin\Manager::getInstance()->isPluginActivated('Feedback')) {
-            $menu->addItem('icon-help', null, array('module' => 'Feedback', 'action' => 'index'), $order = 999);
+            $menu->addItem('icon-help', null, array('module' => 'Feedback', 'action' => 'index'), $order = 990);
         }
 
         if (Piwik::isUserIsAnonymous()) {
             if (Plugin\Manager::getInstance()->isPluginActivated('Feedback')) {
-                $menu->addItem($login, null, array('module' => 'Feedback', 'action' => 'index'), 998);
+                $menu->addItem($login, null, array('module' => 'Feedback', 'action' => 'index'), 970);
             } else {
-                $menu->addItem($login, null, array('module' => 'API', 'action' => 'listAllAPI'), 998);
+                $menu->addItem($login, null, array('module' => 'API', 'action' => 'listAllAPI'), 970);
             }
         } else {
-            $menu->addItem($login, null, array('module' => 'UsersManager', 'action' => 'userSettings'), 998);
+            $menu->addItem($login, null, array('module' => 'UsersManager', 'action' => 'userSettings'), 970);
         }
 
         $module = $this->getLoginModule();

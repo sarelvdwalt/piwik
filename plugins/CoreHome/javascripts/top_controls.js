@@ -6,7 +6,12 @@
  */
 function initTopControls() {
     var $topControlsContainer = $('.top_controls'),
-        left = 0;
+        left = 256;
+
+    var siteSelector = $('.sites_selector_in_dashboard');
+    if (siteSelector.length) {
+        left = $(siteSelector.first()).outerWidth() + 44;
+    }
 
     if ($topControlsContainer.length) {
         $('.piwikTopControl').each(function () {
@@ -16,6 +21,7 @@ function initTopControls() {
             }
 
             $control.css('left', left);
+            $control.css('top', 9 + 'px');
 
             if (!$.contains($topControlsContainer[0], this)) {
                 $control.detach().appendTo($topControlsContainer);
