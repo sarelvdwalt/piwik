@@ -1,5 +1,5 @@
 {{ postEvent("Template.beforeTopBar", userAlias, userLogin, topMenu, userMenu) }}
-<div id="topLeftBar">
+<div id="topRightBar">
 
     {% macro menuItemLabel(label) %}
         {% if label starts with 'plugins/' and label ends with '.png' and '..' not in label %}
@@ -39,17 +39,9 @@
     {% endif %}
 
     {% spaceless %}
-        {% for label,menu in topMenu if menu._order < 900 %}
+        {% for label,menu in topMenu %}
             {{ _self.topMenuItem(label, menu, topMenuModule, topMenuAction) }}
         {% endfor %}
     {% endspaceless %}
 
-</div>
-
-<div id="topRightBar">
-    {% spaceless %}
-        {% for label,menu in topMenu if menu._order >= 900 %}
-            {{ _self.topMenuItem(label, menu, topMenuModule, topMenuAction) }}
-        {% endfor %}
-    {% endspaceless %}
 </div>
