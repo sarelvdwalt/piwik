@@ -41,8 +41,9 @@
 
         {% for level1,level2 in menu %}
             <li id="{% if level2._url is defined %}{{ _self.getId(level2._url) }}{% endif %}">
+
                 <a class="menuItem" {% if level2._url is defined %}href="#{{ _self.getFirstUrl(level2._url) }}"{% endif %}>
-                    {{ level1|translate }}
+                    <span class="icon-arrow-right"></span> {{ level1|translate }}
                    <span class="hidden">
                      {{ 'CoreHome_Menu'|translate }}
                    </span>

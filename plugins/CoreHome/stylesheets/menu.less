@@ -68,12 +68,6 @@
     border: 1px solid #ddd;
     border-bottom: 0;
     border-radius: 4px 4px 0 0;
-
-  > a {
-    &:before {
-      content: '+';
-    }
-  }
 }
 
 .Menu--dashboard > .Menu-tabList a {
@@ -103,8 +97,6 @@
 }
 
 .Menu--dashboard > .Menu-tabList > li.sfActive > a {
-    font-size: 12px !important;
-    font-weight: bold;
     background: #f2f2f2;
 }
 
@@ -129,6 +121,11 @@
 .Menu--dashboard > .Menu-tabList > li li {
     background: none;
     border: 0;
+}
+
+.Menu--dashboard > .Menu-tabList > li > a.menuItem {
+    font-weight: bold;
+    font-size: 12px !important;
 }
 
 .Menu--dashboard > .Menu-tabList > li li > a {
@@ -172,7 +169,6 @@
 }
 
 .Menu--dashboard > .Menu-tabList > li li.sfHover > a {
-    font-weight: bold;
     text-decoration: none !important;
 }
 
