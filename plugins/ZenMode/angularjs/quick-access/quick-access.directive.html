@@ -1,9 +1,9 @@
 <div class="quick-access" title="{{ 'ZenMode_QuickAccessTitle' | translate }}">
+    <span class="icon-search"></span>
     <input ng-keydown="onKeypress($event)"
            ng-change="search(search.term)"
            ng-model="search.term"
-           type="text"
-           placeholder="{{ 'ZenMode_SearchForAnything' | translate }}"/>
+           type="text"/>
     <ul ng-show="search.term">
         <li class="quick-access-category"
             ng-click="search('menuCategory')">Menu</li>
