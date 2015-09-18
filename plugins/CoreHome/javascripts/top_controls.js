@@ -10,7 +10,7 @@ function initTopControls() {
 
     var siteSelector = $('.sites_selector_in_dashboard');
     if (siteSelector.length) {
-        left = $(siteSelector.first()).outerWidth() + 27;
+        left = $(siteSelector.first()).outerWidth() + 37;
     }
 
     if ($topControlsContainer.length) {
