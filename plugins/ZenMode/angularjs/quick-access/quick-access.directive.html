@@ -1,8 +1,10 @@
-<div class="quick-access" title="{{ 'ZenMode_QuickAccessTitle' | translate }}">
-    <span class="icon-search"></span>
+<div class="quick-access" title="{{ 'ZenMode_QuickAccessTitle' | translate }}"
+     ng-mouseleave="view.searchActive=false"
+     ng-mouseenter="view.searchActive=true">
+    <span class="icon-search" ng-hide="search.term || view.searchActive"></span>
     <input ng-keydown="onKeypress($event)"
            ng-change="search(search.term)"
-           ng-model="search.term"
+           ng-model="search.term" piwik-focus-if="view.searchActive"
            type="text"/>
     <ul ng-show="search.term">
         <li class="quick-access-category"
