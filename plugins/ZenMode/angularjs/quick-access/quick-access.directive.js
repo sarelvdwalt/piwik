@@ -41,8 +41,12 @@
                     }
 
                     $rootElement.find('#topRightBar .topBarElem a').each(function (index, element) {
-                        menuItems.push({name: $(element).text(), index: ++menuIndex, category: 'menuCategory'});
-                        $(element).attr('quick_access', menuIndex);
+                        var text = $(element).text();
+
+                        if (text) {
+                            menuItems.push({name: text, index: ++menuIndex, category: 'menuCategory'});
+                            $(element).attr('quick_access', menuIndex);
+                        }
                     });
 
                     return menuItems;
@@ -55,8 +59,12 @@
                     }
 
                     $rootElement.find('.Menu-tabList a').each(function (index, element) {
-                        reportEntries.push({name: $(element).text(), category: 'reportCategory', index: ++menuIndex});
-                        $(element).attr('quick_access', menuIndex);
+                        var text = $(element).text();
+
+                        if (text) {
+                            reportEntries.push({name: text, category: 'reportCategory', index: ++menuIndex});
+                            $(element).attr('quick_access', menuIndex);
+                        }
                     });
 
                     return reportEntries;
@@ -93,6 +101,24 @@
                     }
                 }
 
+                function activateSearch()
+                {
+                    scope.$eval('view.searchActive = true');
+                    $timeout(function () {
+                        scope.$apply();
+                    }, 0);
+                }
+
+                function deactivateSearch()
+                {
+                    scope.$eval('search.term = ""');
+                    scope.$eval('view.searchActive = false');
+                    element.find('input').blur();
+                    $timeout(function () {
+                        scope.$apply();
+                    }, 0);
+                }
+
                 scope.onKeypress = function (event) {
 
                     if (38 == event.which) {
@@ -122,6 +148,8 @@
                     var target = $rootElement.find('[quick_access=' + index + ']');
 
                     if (target && target.length && target[0]) {
+                        deactivateSearch();
+
                         var actualTarget = target[0];
 
                         var href = $(actualTarget).attr('href');
@@ -133,6 +161,19 @@
                         }
                     }
                 };
+
+                Mousetrap.bind('alt+f', function(event) {
+                    if (event.preventDefault) {
+                        event.preventDefault();
+                    } else {
+                        event.returnValue = false; // IE
+                    }
+
+                    scope.$eval('view.searchActive = true');
+                    $timeout(function () {
+                        scope.$apply();
+                    }, 0);
+                });
 
             }
         };

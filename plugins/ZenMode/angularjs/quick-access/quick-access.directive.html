@@ -1,4 +1,6 @@
-<div class="quick-access" title="{{ 'ZenMode_QuickAccessTitle' | translate }}"
+<div class="quick-access" title="{{ 'ZenMode_QuickAccessTitle' | translate }}. You can press alt+f to active this search."
+     ng-class="{active: view.searchActive}"
+     piwik-focus-anywhere-but-here="view.searchActive = false;"
      ng-mouseleave="view.searchActive=false"
      ng-mouseenter="view.searchActive=true">
     <span class="icon-search" ng-hide="search.term || view.searchActive"></span>
@@ -6,7 +8,7 @@
            ng-change="search(search.term)"
            ng-model="search.term" piwik-focus-if="view.searchActive"
            type="text"/>
-    <ul ng-show="search.term">
+    <ul ng-show="search.term && view.searchActive">
         <li class="quick-access-category"
             ng-click="search('menuCategory')">Menu</li>
         <li class="no-result"
@@ -38,6 +40,6 @@
             ng-mouseenter="search.index=((menuItems | length) + $index + (reportEntries | length))"
             ng-class="{selected: ((menuItems | length) + $index + (reportEntries | length)) == search.index}"
             ng-click="selectSite(site.idsite)"
-            ng-repeat="site in sitesModel.sites"><a>{{ site.name | trim }}</a></li>
+            ng-repeat="site in sitesModel.sites"><a ng-bind-html="site.name"></a></li>
     </ul>
 </div>

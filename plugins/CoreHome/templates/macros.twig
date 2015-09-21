@@ -12,7 +12,7 @@
                         {% endfor %}
 
                         <li class="{% if activeMenu %}sfActive{% endif %} sfHover">
-                            <a class="menuItem">{{ name|translate }}</a>
+                            <a class="menuItem"><span class="icon-arrow-right"></span> {{ name|translate }}</a>
                             <ul>
                                 {% for sname,url in submenu %}
                                     {% if sname|slice(0,1) != '_' %}

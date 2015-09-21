@@ -39,17 +39,22 @@
 }
 
 .Menu--dashboard > .Menu-tabList {
-    line-height: 1;
-    display: table;      // The nav has the height og his children
-    margin-bottom: -1px; // Allow tabs to merge with the submenu
+  line-height: 1;
+  display: table; // The nav has the height og his children
+  margin-bottom: -1px; // Allow tabs to merge with the submenu
+}
 
+.Menu--dashboard {
   #search {
     background-color: #fff !important;
-    height: 58px;
     padding-left: 8px;
+    padding-top: 8px;
+    padding-bottom: 13px;
     .quick-access {
-      height: 35px;
-      margin-top: 8px;
+      z-index: 1000;
+      input {
+        height: 33px;
+      }
     }
   }
 }
