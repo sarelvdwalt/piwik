@@ -35,9 +35,10 @@
 {%- endmacro %}
 
 <div class="Menu--dashboard">
-
+    <div id="search">
+        <div piwik-quick-access></div>
+    </div>
     <ul class="Menu-tabList">
-        <li id="search"><div piwik-quick-access></div></li>
 
         {% for level1,level2 in menu %}
             <li id="{% if level2._url is defined %}{{ _self.getId(level2._url) }}{% endif %}">
