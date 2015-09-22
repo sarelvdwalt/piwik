@@ -7,7 +7,7 @@
 
     {% if (menu is defined and menu) %}
         {% import '@CoreHome/_menu.twig' as menu %}
-        {{ menu.menu(menu) }}
+        {{ menu.menu(menu, true) }}
     {% endif %}
 
   <div class="main">

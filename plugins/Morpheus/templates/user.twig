@@ -28,7 +28,7 @@
 
         {% if showMenu is not defined or showMenu %}
             {% import '@CoreHome/_menu.twig' as menu %}
-            {{ menu.menu(userMenu) }}
+            {{ menu.menu(userMenu, false) }}
         {% endif %}
 
         <div id="content" class="main admin user">
