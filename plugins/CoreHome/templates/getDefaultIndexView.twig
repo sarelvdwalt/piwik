@@ -1,23 +1,38 @@
 {% extends "dashboard.twig" %}
+{% import 'ajaxMacros.twig' as ajax %}
 {% block notification %}{% endblock %}
 {% block content %}
 
-<div class="container-fluid">
+<div class="page">
 
-  <div class="row">
+    {% if (menu is defined and menu) %}
+        {% import '@CoreHome/_menu.twig' as menu %}
+        {{ menu.menu(menu) }}
+    {% endif %}
 
-    <div class="col-md-3">
-      {% if (menu is defined and menu) %}
-        {% include "@CoreHome/_menu.twig" %}
-      {% endif %}
-    </div>
+  <div class="main">
 
-    <div class="col-md-9 col-md-offset-3">
-        {% include "@CoreHome/_siteSelectHeader.twig" %}
-        {% include "@CoreHome/_indexContent.twig" %}
-    </div>
+      <a name="main"></a>
 
-    </div>
+      {% include "@CoreHome/_notifications.twig" %}
+
+      <div class="top_controls">
+          {% include "@CoreHome/_siteSelectHeader.twig" %}
+          {% include "@CoreHome/_periodSelect.twig" %}
+          {{ postEvent("Template.nextToCalendar") }}
+          {% render dashboardSettingsControl %}
+          {% include "@CoreHome/_headerMessage.twig" %}
+          {{ ajax.requestErrorDiv(emailSuperUser|default('')) }}
+      </div>
+
+      {{ ajax.loadingDiv() }}
+
+      <div id="content" class="home">
+          {% if content %}{{ content }}{% endif %}
+      </div>
+
+      <div class="clear"></div>
+  </div>
 
 </div>
 {% endblock %}

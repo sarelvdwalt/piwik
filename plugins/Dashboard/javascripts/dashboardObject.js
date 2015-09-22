@@ -482,14 +482,14 @@
             ) {
                 var items = [];
                 for (var i = 0; i < dashboards.length; i++) {
-                    var $link = $('<a/>').attr('data-idDashboard', dashboards[i].iddashboard).text(dashboards[i].name);
+                    var $link = $('<a/>').attr('data-idDashboard', dashboards[i].iddashboard).text(dashboards[i].name).addClass('item');
                     var $li = $('<li/>').attr('id', 'Dashboard_embeddedIndex_' + dashboards[i].iddashboard)
                                         .addClass('dashboardMenuItem').append($link);
                     items.push($li);
 
                     if (dashboards[i].iddashboard == dashboardId) {
                         dashboardName = dashboards[i].name;
-                        $li.addClass('sfHover');
+                        $li.addClass('sfActive');
                     }
                 }
                 dashboardMenuList.prepend(items);
@@ -505,13 +505,13 @@
                 if (typeof piwikMenu != 'undefined') {
                     piwikMenu.activateMenu('Dashboard', 'embeddedIndex');
                 }
-                $('#Dashboard ul li').removeClass('sfHover');
+                $('#Dashboard ul li').removeClass('sfActive');
                 if ($(dashboardElement).length) {
                     $(dashboardElement).dashboard('loadDashboard', idDashboard);
                 } else {
                     broadcast.propagateAjax('module=Dashboard&action=embeddedIndex&idDashboard=' + idDashboard);
                 }
-                $(this).closest('li').addClass('sfHover');
+                $(this).closest('li').addClass('sfActive');
             });
         };
 

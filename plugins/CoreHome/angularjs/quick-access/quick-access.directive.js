@@ -15,15 +15,15 @@
 (function () {
     angular.module('piwikApp').directive('piwikQuickAccess', QuickAccessDirective);
 
-    QuickAccessDirective.$inject = ['$rootElement', '$timeout', '$filter', 'siteSelectorModel', 'piwik'];
+    QuickAccessDirective.$inject = ['$rootElement', '$timeout', '$filter', 'piwik'];
 
-    function QuickAccessDirective ($rootElement, $timeout, $filter, siteSelectorModel, piwik) {
+    function QuickAccessDirective ($rootElement, $timeout, $filter, piwik) {
 
         return {
             restrict: 'A',
             replace: true,
             scope: {},
-            templateUrl: 'plugins/ZenMode/angularjs/quick-access/quick-access.directive.html?cb=' + piwik.cacheBuster,
+            templateUrl: 'plugins/CoreHome/angularjs/quick-access/quick-access.directive.html?cb=' + piwik.cacheBuster,
             link: function (scope, element, attrs) {
 
                 var menuIndex = -1;
@@ -32,7 +32,6 @@
 
                 scope.reportEntries = [];
                 scope.menuItems  = [];
-                scope.sitesModel = siteSelectorModel;
 
                 function getMenuItems()
                 {
@@ -40,7 +39,7 @@
                         return menuItems;
                     }
 
-                    $rootElement.find('#topRightBar .topBarElem a').each(function (index, element) {
+                    $rootElement.find('#header .navbar-right a').each(function (index, element) {
                         var text = $(element).text();
 
                         if (text) {
@@ -58,7 +57,7 @@
                         return reportEntries;
                     }
 
-                    $rootElement.find('.Menu-tabList a').each(function (index, element) {
+                    $rootElement.find('#secondNavBar a').each(function (index, element) {
                         var text = $(element).text();
 
                         if (text) {
@@ -137,11 +136,6 @@
 
                     this.menuItems     = $filter('filter')(getMenuItems(), searchTerm);
                     this.reportEntries = $filter('filter')(getReportEntries(), searchTerm);
-                    this.sitesModel.searchSite(searchTerm);
-                };
-
-                scope.selectSite = function (idsite) {
-                    this.sitesModel.loadSite(idsite);
                 };
 
                 scope.selectMenuItem = function (index) {

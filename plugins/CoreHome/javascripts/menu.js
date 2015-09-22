@@ -16,43 +16,63 @@ menu.prototype =
 {
     resetTimer: null,
 
-    overMainLI: function () {
-        var $this = $(this);
-        $this.siblings().removeClass('sfHover');
-        $this.addClass('sfHover');
-        clearTimeout(menu.prototype.resetTimer);
-    },
-
-    outMainLI: function ($this) {
-        clearTimeout(menu.prototype.resetTimer);
-        menu.prototype.resetTimer = setTimeout(function() {
-            $('.Menu-tabList > .sfHover', this.menuNode).removeClass('sfHover');
-            $('.Menu-tabList > .sfActive', this.menuNode).addClass('sfHover');
-        }, 2000);
-    },
-
     onItemClick: function (e) {
         if (e.which === 2) {
             return;
         }
-        $('.Menu--dashboard').trigger('piwikSwitchPage', this);
-        broadcast.propagateAjax( $(this).attr('href').substr(1) );
-        return false;
+
+        $('#secondNavBar').trigger('piwikSwitchPage', this);
+
+        if ($(this).parent().parent().hasClass('navbar')) {
+            $(this).parents('li').toggleClass('sfActive');
+        }
+
+        if (!$('#content.admin').size()) {
+            broadcast.propagateAjax( $(this).attr('href').substr(1) );
+
+            return false;
+        }
+
+        if (!$(this).attr('href')) {
+            return false;
+        }
     },
 
     init: function () {
-        this.menuNode = $('.Menu--dashboard');
+        this.menuNode = $('#secondNavBar');
 
-        if ($('#content.admin').length) {
-            return;
-        }
+        // add id to all li menu to support menu identification.
+        // for all sub menu we want to have a unique id based on their module and action
+        // for main menu we want to add just the module as its id.
+        this.menuNode.find('li').each(function () {
+            var link = $(this).find('a');
+            if (!link) {
+                return;
+            }
+            var href = link.attr('href');
+            if (!href) {
+                return;
+            }
+            var url = href.substr(1);
 
-        this.menuNode.find("li:has(ul)").click(this.overMainLI);
+            var module = broadcast.getValueFromUrl('module', url);
+            var action = broadcast.getValueFromUrl('action', url);
 
-  //      this.menuNode.find("li:has(ul),li#Searchmenu").hover(this.overMainLI, this.outMainLI);
-//        this.menuNode.find("li:has(ul),li#Searchmenu").focusin(this.overMainLI);
+            var moduleId = broadcast.getValueFromUrl("idGoal", url) || broadcast.getValueFromUrl("idDashboard", url);
+            var main_menu = $(this).parent().hasClass('navbar') ? true : false;
+            if (main_menu) {
+                $(this).attr({id: module});
+            }
+            // if there's a idGoal or idDashboard, use this in the ID
+            else if (moduleId != '') {
+                $(this).attr({id: module + '_' + action + '_' + moduleId});
+            }
+            else {
+                $(this).attr({id: module + '_' + action});
+            }
+        });
 
-        this.menuNode.find('a.menuItem').click(this.onItemClick);
+        this.menuNode.find('a.item').click(this.onItemClick);
     },
 
     activateMenu: function (module, action, params) {
@@ -60,7 +80,8 @@ menu.prototype =
         params.module = module;
         params.action = action;
 
-        this.menuNode.find('li').removeClass('sfHover').removeClass('sfActive');
+        this.menuNode.find('li').removeClass('sfActive');
+
         var $activeLink = this.menuNode.find('a').filter(function () {
             var url = $(this).attr('href');
             if (!url) {
@@ -83,8 +104,8 @@ menu.prototype =
             return true;
         });
 
-        $activeLink.closest('li').addClass('sfHover');
-        $activeLink.closest('li.menuTab').addClass('sfActive').addClass('sfHover');
+        $activeLink.closest('li').addClass('sfActive');
+        $activeLink.closest('li.menuTab').addClass('sfActive');
     },
 
     // getting the right li is a little tricky since goals uses idGoal, and overview is index.
@@ -105,7 +126,7 @@ menu.prototype =
 
     loadFirstSection: function () {
         if (broadcast.isHashExists() == false) {
-            $('li:first a:first', this.menuNode).click().addClass('sfHover').addClass('sfActive');
+            $('li:first a:first', this.menuNode).click().addClass('sfActive');
         }
     }
 };

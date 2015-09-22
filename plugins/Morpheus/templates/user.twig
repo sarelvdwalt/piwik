@@ -24,15 +24,21 @@
     {{ ajax.requestErrorDiv(emailSuperUser|default('')) }}
     {{ postEvent("Template.beforeContent", "user", currentModule) }}
 
-    <div id="container">
+    <div class="page">
 
         {% if showMenu is not defined or showMenu %}
-            {% include "@CoreHome/_userMenu.twig" %}
+            {% import '@CoreHome/_menu.twig' as menu %}
+            {{ menu.menu(userMenu) }}
         {% endif %}
 
-        <div id="content" class="admin user">
+        <div id="content" class="main admin user">
 
             {% include "@CoreHome/_notifications.twig" %}
+
+            <div class="top_controls">
+                {% block topcontrols %}
+                {% endblock %}
+            </div>
 
             <div class="ui-confirm" id="alert">
                 <h2></h2>

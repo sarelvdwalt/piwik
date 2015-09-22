@@ -10,7 +10,7 @@
            type="text"/>
     <ul ng-show="search.term && view.searchActive">
         <li class="quick-access-category"
-            ng-click="search('menuCategory')">Menu</li>
+            ng-click="search('menuCategory')">Top Menu</li>
         <li class="no-result"
             ng-hide="menuItems | length">---</li>
         <li class="result"
@@ -20,7 +20,7 @@
             ng-repeat="entry in menuItems"><a>{{ entry.name | trim }}</a></li>
 
         <li class="quick-access-category"
-            ng-click="search('reportCategory')">{{ 'General_Reports' | translate }}</li>
+            ng-click="search('reportCategory')">Menu</li>
         <li class="no-result"
             ng-hide="reportEntries | length">---</li>
         <li class="result"
@@ -28,18 +28,5 @@
             ng-mouseenter="search.index=((menuItems | length) + $index)"
             ng-click="selectMenuItem(report.index)"
             ng-repeat="report in reportEntries"><a>{{ report.name | trim }}</a></li>
-
-        <li class="quick-access-category"
-            ng-click="search('%')">{{ 'SitesManager_Sites' | translate }}</li>
-        <li class="no-result"
-            ng-hide="(sitesModel.sites | length) || sitesModel.isLoading">---</li>
-        <li class="no-result"
-            ng-show="sitesModel.isLoading">{{ 'MultiSites_LoadingWebsites' | translate }}</li>
-        <li class="result"
-            ng-show="!sitesModel.isLoading"
-            ng-mouseenter="search.index=((menuItems | length) + $index + (reportEntries | length))"
-            ng-class="{selected: ((menuItems | length) + $index + (reportEntries | length)) == search.index}"
-            ng-click="selectSite(site.idsite)"
-            ng-repeat="site in sitesModel.sites"><a ng-bind-html="site.name"></a></li>
     </ul>
 </div>

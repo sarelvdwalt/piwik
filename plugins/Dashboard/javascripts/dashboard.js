@@ -11,9 +11,9 @@ function initDashboard(dashboardId, dashboardLayout) {
     initTopControls();
 
     // Embed dashboard
-    if (!$('#topRightBar').length) {
+    if (!$('#header .navbar-right').length) {
         $('.dashboardSettings').after($('#Dashboard'));
-        $('#Dashboard_embeddedIndex_' + dashboardId).addClass('sfHover');
+        $('#Dashboard_embeddedIndex_' + dashboardId).addClass('sfActive');
     }
 
     widgetsHelper.getAvailableWidgets();
