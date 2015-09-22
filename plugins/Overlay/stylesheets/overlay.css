@@ -146,8 +146,10 @@ body .ui-tooltip.overlayTooltip {
     font-weight: bold;
 }
 
-#topLeftBar, #topRightBar {
-    display: none;
+.navbar {
+    .navbar-right {
+        display: none;
+    }
 }
 
 .overlay-sidebar-container {

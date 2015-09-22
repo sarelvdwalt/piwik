@@ -2,13 +2,23 @@
 {% block notification %}{% endblock %}
 {% block content %}
 
-{% include "@CoreHome/_siteSelectHeader.twig" %}
+<div class="container-fluid">
 
-{% if (menu is defined and menu) %}
-  {% include "@CoreHome/_menu.twig" %}
-{% endif %}
+  <div class="row">
 
-{% include "@CoreHome/_indexContent.twig" %}
+    <div class="col-md-3">
+      {% if (menu is defined and menu) %}
+        {% include "@CoreHome/_menu.twig" %}
+      {% endif %}
+    </div>
 
+    <div class="col-md-9 col-md-offset-3">
+        {% include "@CoreHome/_siteSelectHeader.twig" %}
+        {% include "@CoreHome/_indexContent.twig" %}
+    </div>
+
+    </div>
+
+</div>
 {% endblock %}
 

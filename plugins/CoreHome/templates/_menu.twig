@@ -34,32 +34,30 @@
     {%- endif %}
 {%- endmacro %}
 
-<div class="Menu--dashboard">
+<div class="col-xs-7 col-sm-3 col-md-3 sidebar sidebar-left sidebar-animate sidebar-md-show">
     <div id="search">
         <div piwik-quick-access></div>
     </div>
-    <ul class="Menu-tabList">
-
+    <ul class="nav navbar-stacked">
         {% for level1,level2 in menu %}
             <li id="{% if level2._url is defined %}{{ _self.getId(level2._url) }}{% endif %}" class="menuTab">
                 <a class="menuItem" {% if level2._url is defined %}href="#{{ _self.getFirstUrl(level2._url) }}"{% endif %}>
                     <span class="icon-arrow-right"></span> {{ level1|translate }}
-                   <span class="hidden">
+                    <span class="hidden">
                      {{ 'CoreHome_Menu'|translate }}
                    </span>
                 </a>
                 <ul>
-                {% for name,urlParameters in level2 %}
-                    {% if urlParameters._url is defined and urlParameters._url is not iterable %}
-                        {{ _self.groupedItem(name,urlParameters._url) }}
-                    {% elseif name|slice(0,1) != '_' %}
-                        {{ _self.submenuItem(name,urlParameters._url) }}
-                    {% endif %}
-                {% endfor %}
+                    {% for name,urlParameters in level2 %}
+                        {% if urlParameters._url is defined and urlParameters._url is not iterable %}
+                            {{ _self.groupedItem(name,urlParameters._url) }}
+                        {% elseif name|slice(0,1) != '_' %}
+                            {{ _self.submenuItem(name,urlParameters._url) }}
+                        {% endif %}
+                    {% endfor %}
 
                 </ul>
             </li>
         {% endfor %}
     </ul>
-
 </div>

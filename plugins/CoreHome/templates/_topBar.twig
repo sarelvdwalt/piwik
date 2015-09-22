@@ -1,5 +1,5 @@
 {{ postEvent("Template.beforeTopBar", userAlias, userLogin, topMenu, userMenu) }}
-<div id="topRightBar">
+<ul class="nav navbar-nav navbar-right">
 
     {% macro menuItemLabel(label) %}
         {% if label starts with 'plugins/' and label ends with '.png' and '..' not in label %}
@@ -15,11 +15,11 @@
         {% if menu._html is defined %}
             {{ menu._html|raw }}
         {% elseif (menu._url.module == currentModule and (menu._url.action is empty or menu._url.action == currentAction)) %}
-            <span class="topBarElem topBarElemActive"><strong>{{ _self.menuItemLabel(label) }}</strong></span>
+            <a class=""></a><strong>{{ _self.menuItemLabel(label) }}</strong>
         {% else %}
-            <span class="topBarElem" {% if menu._tooltip is defined %}title="{{ menu._tooltip }}"{% endif %}>
-        <a id="topmenu-{{ menu._url.module|lower }}" href="index.php{{ menu._url|urlRewriteWithParameters }}">{{ _self.menuItemLabel(label) }}</a>
-    </span>
+            <a {% if menu._tooltip is defined %}title="{{ menu._tooltip }}"{% endif %}
+               id="topmenu-{{ menu._url.module|lower }}"
+               href="index.php{{ menu._url|urlRewriteWithParameters }}">{{ _self.menuItemLabel(label) }}</a>
         {% endif %}
     {% endmacro %}
 
@@ -40,8 +40,8 @@
 
     {% spaceless %}
         {% for label,menu in topMenu %}
-            {{ _self.topMenuItem(label, menu, topMenuModule, topMenuAction) }}
+            <li>{{ _self.topMenuItem(label, menu, topMenuModule, topMenuAction) }}</li>
         {% endfor %}
     {% endspaceless %}
 
-</div>
+</ul>
