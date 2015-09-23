@@ -1,14 +1,16 @@
 {% extends isWidgetized ? 'empty.twig' : 'dashboard.twig' %}
 
-{% block content %}
-<div class="pageWrap container" id="multisites">
-
+{% block topcontrols %}
     {% if not isWidgetized %}
         <div class="top_controls">
             {% include "@CoreHome/_periodSelect.twig" %}
             {% include "@CoreHome/_headerMessage.twig" %}
         </div>
     {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="pageWrap container" id="multisites">
 
     <div id="main">
         <div piwik-multisites-dashboard

@@ -41,6 +41,15 @@
   }
 }
 
+ .navbar {
+   a {
+     text-decoration: none;
+     &:hover, &:focus, &:active {
+       text-decoration: none;
+     }
+   }
+ }
+
 #root {
 
  .main {
@@ -65,12 +74,9 @@
     margin-left:15px;
     margin-right:15px;
   }
-  
-  .admin .top_controls {
-    min-height: 46px;
-  }
 
   .top_controls {
+    min-height: 46px;
     position: relative;
     background-color: #fff;
     height: auto;
@@ -78,7 +84,7 @@
     .piwikTopControl {
       display: inline-block;
       float: none;
-      position: relative;
+      position: absolute;
       margin-top: 8px;
       margin-bottom: 8px;
       vertical-align: top;
@@ -231,6 +237,7 @@
   .top_bar_sites_selector.sites_selector_in_dashboard {
     z-index: 999;
     margin-right: 10px;
+    background-color: #fff;
 
     label {
       font-size: 11px;
@@ -240,6 +247,7 @@
 
     .custom_select_block {
       padding-left: 14px;
+      background-color: #fff;
     }
 
     .sites_autocomplete {

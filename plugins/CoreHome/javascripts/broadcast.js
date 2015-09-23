@@ -479,6 +479,8 @@ var broadcast = {
 
                 piwikHelper.compileAngularComponents('#content');
             }
+
+            initTopControls();
         }
 
         var ajax = new ajaxHelper();

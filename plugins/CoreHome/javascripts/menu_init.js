@@ -13,7 +13,8 @@ $(function () {
     }
 
     if(isPageIsAdmin) {
-        // don't use broadcast in admin pages
+        // don't use broadcast in admin page
+        initTopControls();
         return;
     }
     if(isPageHasMenu) {

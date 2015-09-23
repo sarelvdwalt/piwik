@@ -1257,6 +1257,8 @@ $(document).ready(function() {
         };
 
         $('body').on('mouseup', this.onMouseUp);
+
+        initTopControls();
     };
 
     /**
