@@ -2,9 +2,7 @@
 <ul class="navbar-right">
 
     {% macro menuItemLabel(label) %}
-        {% if label starts with 'plugins/' and label ends with '.png' and '..' not in label %}
-            <img src="{{ label }}"/>
-        {% elseif label starts with 'icon-' %}
+        {% if label starts with 'icon-' %}
             <span class="{{ label }}"/>
         {% else %}
             {{ label|translate }}

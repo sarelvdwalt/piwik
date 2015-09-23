@@ -44,7 +44,7 @@ class Menu extends \Piwik\Plugin\Menu
         if (Piwik::isUserIsAnonymous()) {
             $menu->addItem('Login_LogIn', null, array('module' => $module, 'action' => false), 1000);
         } else {
-            $menu->addItem('plugins/Morpheus/images/signout.png', null, array('module' => $module, 'action' => 'logout', 'idSite' => null), 1000, 'Sign out');
+            $menu->addItem('icon-sign-out', null, array('module' => $module, 'action' => 'logout', 'idSite' => null), 1000, 'Sign out');
         }
     }
 
