@@ -31,8 +31,6 @@
 
         <div class="main admin" id="content">
 
-            {% include "@CoreHome/_notifications.twig" %}
-
             <div class="top_controls">
                 {% block topcontrols %}
                 {% endblock %}
@@ -40,12 +38,13 @@
                 {% include "@CoreHome/_headerMessage.twig" %}
             </div>
 
+            {% include "@CoreHome/_notifications.twig" %}
+            {% include "@CoreHome/_warningInvalidHost.twig" %}
+
             <div class="ui-confirm" id="alert">
                 <h2></h2>
                 <input role="no" type="button" value="{{ 'General_Ok'|translate }}"/>
             </div>
-
-            {% include "@CoreHome/_warningInvalidHost.twig" %}
 
             {% block content %}
             {% endblock %}

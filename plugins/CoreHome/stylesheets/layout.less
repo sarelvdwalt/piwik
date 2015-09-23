@@ -10,7 +10,7 @@
     content: "";
   }
 
-  .navbar {
+  #firstNavBar {
     li {
       display: inline-block;
     }
@@ -44,15 +44,58 @@
 #root {
 
  .main {
-    margin-top: 15px;
     font-size: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #secondNavBar + .main {
     padding-left: 244px;
-    padding-right: 16px;
   }
 
   @media (max-width: 767px) {
     .main {
       padding-left: 0;
+    }
+  }
+
+
+  #root>.top_controls {
+    margin-left:15px;
+    margin-right:15px;
+  }
+  
+  .admin .top_controls {
+    min-height: 46px;
+  }
+
+  .top_controls {
+    position: relative;
+    background-color: #fff;
+    height: auto;
+
+    .piwikTopControl {
+      display: inline-block;
+      float: none;
+      position: relative;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      vertical-align: top;
+      font-size: 11px;
+    }
+  }
+
+  @media all and (max-width: 749px) {
+    .top_controls {
+      height: auto;
+    }
+
+    .top_controls #periodString,
+    .top_controls .dashboardSettings,
+    .top_controls .segmentEditorPanel {
+      position: static !important;
+      margin: 0 0 10px;
+      float: none;
     }
   }
 
@@ -100,7 +143,11 @@
           .font-default(13px, 21px);
           padding: 14px 21px 14px 19px;
           color: #0d0d0d;
-          decoration:none;
+          decoration: none !important;
+
+          &:hover, &:focus {
+            decoration: none !important;
+          }
         }
 
         > .item {
@@ -182,7 +229,6 @@
 
   .top_bar_sites_selector.sites_selector_in_dashboard {
     z-index: 999;
-    position: absolute;
     margin-right: 10px;
 
     label {
@@ -200,9 +246,9 @@
       width: auto;
 
       .custom_select_main_link {
-        padding-top: 10px;
+        padding-top: 11px;
         padding-left: 19px;
-        padding-bottom: 9px;
+        padding-bottom: 8px;
         padding-right: 31px;
       }
       .custom_select {

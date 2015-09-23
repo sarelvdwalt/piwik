@@ -1,39 +1,20 @@
 {% extends "dashboard.twig" %}
 {% import 'ajaxMacros.twig' as ajax %}
-{% block notification %}{% endblock %}
+
+{% block topcontrols %}
+    {% include "@CoreHome/_siteSelectHeader.twig" %}
+    {% include "@CoreHome/_periodSelect.twig" %}
+    {{ postEvent("Template.nextToCalendar") }}
+    {% render dashboardSettingsControl %}
+    {% include "@CoreHome/_headerMessage.twig" %}
+    {{ ajax.requestErrorDiv(emailSuperUser|default('')) }}
+{% endblock %}
+
 {% block content %}
+    {{ ajax.loadingDiv() }}
 
-<div class="page">
-
-    {% if (menu is defined and menu) %}
-        {% import '@CoreHome/_menu.twig' as menu %}
-        {{ menu.menu(menu, true) }}
-    {% endif %}
-
-  <div class="main">
-
-      <a name="main"></a>
-
-      {% include "@CoreHome/_notifications.twig" %}
-
-      <div class="top_controls">
-          {% include "@CoreHome/_siteSelectHeader.twig" %}
-          {% include "@CoreHome/_periodSelect.twig" %}
-          {{ postEvent("Template.nextToCalendar") }}
-          {% render dashboardSettingsControl %}
-          {% include "@CoreHome/_headerMessage.twig" %}
-          {{ ajax.requestErrorDiv(emailSuperUser|default('')) }}
-      </div>
-
-      {{ ajax.loadingDiv() }}
-
-      <div id="content" class="home">
-          {% if content %}{{ content }}{% endif %}
-      </div>
-
-      <div class="clear"></div>
-  </div>
-
-</div>
+    <div id="content" class="home">
+        {% if content %}{{ content }}{% endif %}
+    </div>
 {% endblock %}
 
