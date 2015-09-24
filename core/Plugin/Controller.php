@@ -15,7 +15,6 @@ use Piwik\API\Request;
 use Piwik\Common;
 use Piwik\Config as PiwikConfig;
 use Piwik\Config;
-use Piwik\Container\StaticContainer;
 use Piwik\DataTable\Filter\CalculateEvolutionFilter;
 use Piwik\Date;
 use Piwik\Exception\NoPrivilegesException;
@@ -595,7 +594,9 @@ abstract class Controller
         $maxDate = Date::factory('now', $siteTimezone);
         $this->setMaxDateView($maxDate, $view);
 
-        $rawDate   = Common::getRequestVar('date');
+        $rawDate = Common::getRequestVar('date');
+        Period::checkDateFormat($rawDate);
+
         $periodStr = Common::getRequestVar('period');
 
         if ($periodStr != 'range') {
