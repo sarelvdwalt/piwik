@@ -76,6 +76,7 @@ class CoreHome extends \Piwik\Plugin
         $stylesheets[] = "plugins/CoreHome/angularjs/dialogtoggler/ngdialog.less";
         $stylesheets[] = "plugins/CoreHome/angularjs/notification/notification.directive.less";
         $stylesheets[] = "plugins/CoreHome/angularjs/quick-access/quick-access.directive.less";
+        $stylesheets[] = "plugins/CoreHome/angularjs/selector/selector.directive.less";
     }
 
     public function getJsFiles(&$jsFiles)
@@ -166,6 +167,7 @@ class CoreHome extends \Piwik\Plugin
         $jsFiles[] = "plugins/CoreHome/angularjs/ajax-form/ajax-form.directive.js";
 
         $jsFiles[] = "plugins/CoreHome/angularjs/quick-access/quick-access.directive.js";
+        $jsFiles[] = "plugins/CoreHome/angularjs/selector/selector.directive.js";
     }
 
     public function getClientSideTranslationKeys(&$translationKeys)

@@ -442,16 +442,8 @@
 
         // reset date/period when opening calendar
         $("#periodString").on('click', "#date,.calendar-icon", function () {
-            var periodMore = $("#periodMore").toggle();
             if (periodMore.is(":visible")) {
                 periodMore.find(".ui-state-highlight").removeClass('ui-state-highlight');
-            }
-        });
-
-        $('body').on('click', function(e) {
-            var target = $(e.target);
-            if (target.closest('html').length && !target.closest('#periodString').length && !target.is('option') && $("#periodMore").is(":visible")) {
-                $("#periodMore").hide();
             }
         });
 

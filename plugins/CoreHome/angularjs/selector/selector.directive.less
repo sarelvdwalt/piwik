@@ -1,0 +1,57 @@
+.selector {
+  display: inline-block;
+  .font-default(11px, 12px);
+  z-index: 99;
+
+  .selectorContainer {
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  a.title {
+    display: inline-block;
+    width: 100%;
+    padding: 11px 19px 10px;
+    white-space: nowrap;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #0d0d0d;
+    .icon {
+      padding-left: 5px;
+      display: inline-block;
+    }
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .dropdown {
+    display: none;
+    padding: 11px 19px;
+  }
+
+  .activityIndicator {
+    display: none;
+  }
+
+  .loading .activityIndicator {
+    display: inline-block;
+    background: url(plugins/Morpheus/images/loading-blue.gif) no-repeat right 9px;
+  }
+
+  &.expanded {
+    .dropdown {
+      display: block;
+    }
+    .icon {
+      float: right;
+      &:after {
+        clear:right;
+        content: ' ';
+      }
+    }
+  }
+}
