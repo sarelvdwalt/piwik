@@ -45,12 +45,20 @@ menu.prototype =
         // for all sub menu we want to have a unique id based on their module and action
         // for main menu we want to add just the module as its id.
         this.menuNode.find('li').each(function () {
-            var link = $(this).find('a');
+            var $this = $(this);
+            var link = $this.find('a');
+
+            var main_menu = $this.parent().hasClass('navbar') ? true : false;
+
             if (!link) {
                 return;
             }
+
             var href = link.attr('href');
             if (!href) {
+                if (main_menu && !$this.find('li').length) {
+                    $this.hide(); // no link and no child menu items -> hide it
+                }
                 return;
             }
             var url = href.substr(1);
@@ -59,9 +67,9 @@ menu.prototype =
             var action = broadcast.getValueFromUrl('action', url);
 
             var moduleId = broadcast.getValueFromUrl("idGoal", url) || broadcast.getValueFromUrl("idDashboard", url);
-            var main_menu = $(this).parent().hasClass('navbar') ? true : false;
+
             if (main_menu) {
-                $(this).attr({id: module});
+                $this.attr({id: module});
             }
             // if there's a idGoal or idDashboard, use this in the ID
             else if (moduleId != '') {

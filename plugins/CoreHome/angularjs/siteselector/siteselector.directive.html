@@ -15,7 +15,7 @@
     <a ng-click="view.showSitesList=!view.showSitesList; view.showSitesList && model.loadInitialSites();"
        href="javascript:void(0)"
        class="custom_select_main_link"
-       ng-class="{'loading': model.isLoading}">
+       ng-class="{'loading': model.isLoading, 'expanded': view.showSitesList}">
         <span>{{ 'General_Website'| translate }}:</span> <span ng-bind-html="selectedSite.name || model.firstSiteName">?</span>
     </a>
 

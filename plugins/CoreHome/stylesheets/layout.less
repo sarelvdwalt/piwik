@@ -266,10 +266,11 @@
         padding-left: 19px;
         padding-bottom: 8px;
         padding-right: 31px;
+        max-width: 190px;
+        white-space: nowrap;
       }
       .custom_select {
         border: 1px solid #efefef;
-        background-color: transparent;
         font-size: 11px;
         width: auto;
 
@@ -281,10 +282,8 @@
       }
     }
 
+    .sites_autocomplete--dropdown .custom_select_main_link.loading:not(.expanded),
     .sites_autocomplete--dropdown .custom_select_main_link:not(.loading) {
-      > span {
-        padding: 0;
-      }
       &:before {
         border-top-color: #333;
         top: 4px;

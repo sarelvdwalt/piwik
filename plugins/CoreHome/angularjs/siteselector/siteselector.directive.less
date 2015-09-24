@@ -60,9 +60,10 @@ table.dataTable tr td .sites_autocomplete a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0 10px 0 4px;
+  padding: 0;
 }
 
+.sites_autocomplete .custom_select_main_link.loading:not(.expanded):before,
 .sites_autocomplete--dropdown .custom_select_main_link:not(.loading):before {
   content: " \25BC";
   position: absolute;
@@ -78,8 +79,11 @@ table.dataTable tr td .sites_autocomplete a {
   position: relative;
 }
 
-.sites_autocomplete .custom_select_main_link.loading {
+.sites_autocomplete .custom_select_main_link.loading.expanded {
   background: url(plugins/Morpheus/images/loading-blue.gif) no-repeat right 9px;
+  > span {
+    padding: 0 10px 0 4px;
+  }
 }
 
 .sites_autocomplete .custom_select_ul_list,
