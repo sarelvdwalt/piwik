@@ -44,4 +44,44 @@
             }
         };
     }
+
+    angular.module('piwikApp').directive('piwikExpandOnHover', piwikExpandOnHover);
+
+    piwikExpandOnHover.$inject = ['$document'];
+
+    function piwikExpandOnHover($document){
+
+        return {
+            restrict: 'A',
+            link: function(scope, element, attr) {
+
+                element.on('mouseenter', '.title', function () {
+                    element.addClass('expanded');
+                });
+
+                element.on('mouseleave', function () {
+                    element.removeClass('expanded');
+                });
+
+                function onClickOutsideElement (event) {
+                    if (element.has(event.target).length === 0) {
+                        element.removeClass('expanded');
+                    }
+                }
+
+                function onEscapeHandler (event) {
+                    if (event.which === 27) {
+                        element.removeClass('expanded');
+                    }
+                }
+
+                $document.on('keyup', onEscapeHandler);
+                $document.on('mouseup', onClickOutsideElement);
+                scope.$on('$destroy', function() {
+                    $document.off('mouseup', onClickOutsideElement);
+                    $document.off('keyup', onEscapeHandler);
+                });
+            }
+        };
+    }
 })();

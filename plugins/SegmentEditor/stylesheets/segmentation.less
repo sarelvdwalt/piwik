@@ -430,7 +430,6 @@ div.scrollable {
     z-index: 121; /* Should be bigger than 'Dashboard widget selector' (z-index: 120) */
     background: #f7f7f7;
     border: 1px solid #e4e5e4;
-    padding: 5px 10px 6px 10px;
     margin-right: 10px;
     border-radius: 4px;
     color: @theme-color-text-light;
@@ -486,7 +485,6 @@ div.scrollable {
 .segmentationContainer ul.submenu {
     padding-top: 5px;
     display: none;
-    float: left;
     margin-bottom: 5px;
 }
 
@@ -508,32 +506,31 @@ div.scrollable {
 }
 
 .segmentEditorPanel.visible ul.submenu {
-    display: block;
+    display: inline-block;
     list-style: none;
 }
 
 .segmentFilterContainer {
-    margin-left: -10px;
-    margin-right: -10px;
     margin-bottom: 10px;
+    display: inline-block;
 }
 
 .segmentEditorPanel.visible .segmentFilterContainer > input[type="text"] {
-    font-size: 13px;
+    font-size: 11px;
     width: 100%;
     padding: 0;
-    border: 1px solid #ccc;
-    border-width: 1px 0;
+    border: 1px solid #d0d0d0;
+    border-width: 1px;
     color: #999;
-    padding: 11px 32px 11px 19px;
+    padding: 7px 10px 7px 10px;
 }
 
 .segmentEditorPanel.visible .segmentFilterContainer > span {
     position: absolute;
     width: 13px;
     height: 13px;
-    right: 12px;
-    top: 16px;
+    right: 23px;
+    top: 42px;
     cursor: pointer;
 }
 
@@ -554,13 +551,6 @@ div.scrollable {
 .segmentationContainer > ul.submenu > li {
     padding: 5px 0;
     clear: both;
-    cursor: pointer;
-}
-
-span.segmentationTitle {
-    background: url(plugins/Morpheus/images/sort_subtable_desc.png) no-repeat right 0;
-    padding-right: 30px;
-    display: block;
     cursor: pointer;
 }
 
@@ -675,12 +665,7 @@ a.metric_category {
 }
 
 .dropdown-body {
-    position: absolute;
-    top: 100%;
-    left: -1px;
     background-color: #f7f7f7;
-    padding: 0px 10px;
-    border: 1px solid #e4e5e4;
     border-top-width: 0px;
     display: none;
     border-bottom-left-radius: 4px;

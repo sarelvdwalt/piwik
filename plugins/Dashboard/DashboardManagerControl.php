@@ -20,7 +20,7 @@ class DashboardManagerControl extends DashboardSettingsControlBase
         parent::__construct();
 
         $this->jsClass = "DashboardManagerControl";
-        $this->cssIdentifier = "dashboard-manager";
+        $this->cssIdentifier = "dashboard-manager selector";
 
         $this->addDashboardActions();
         $this->addGeneralActions();

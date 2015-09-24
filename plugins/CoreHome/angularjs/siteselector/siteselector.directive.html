@@ -1,6 +1,6 @@
 <div piwik-focus-anywhere-but-here="view.showSitesList=false"
      class="siteSelector selector borderedControl"
-     ng-class="{'sites_autocomplete--dropdown': (model.hasMultipleWebsites || showAllSitesItem || !model.sites.length), 'expanded': view.showSitesList}">
+     ng-class="{'expanded': view.showSitesList}">
 
     <script type="text/ng-template" id="siteselector_allsiteslink.html">
         <div ng-click="switchSite({idsite: 'all', name: allSitesText});view.showSitesList=false;"
@@ -21,7 +21,7 @@
         <span ng-bind-html="selectedSite.name || model.firstSiteName">?</span>
 
         <span class="icon icon-arrow-bottom"
-                ng-class="{'iconHidden': model.isLoading}"></span>
+                ng-class="{'iconHidden': model.isLoading, 'collapsed': !view.showSitesList}"></span>
     </a>
 
     <div ng-show="view.showSitesList" class="dropdown">
@@ -55,9 +55,8 @@
                    ng-model="view.searchTerm"
                    ng-change="model.searchSite(view.searchTerm)"
                    class="websiteSearch inp"/>
-            <input type="submit"
-                   ng-click="model.searchSite(view.searchTerm)"
-                   value="{{ 'General_Search' | translate }}" class="but"/>
+            <span ng-click="model.searchSite(view.searchTerm)"
+                  title="{{ 'General_Search' | translate }}" class="icon-search"/>
             <img title="Clear"
                  ng-show="view.searchTerm"
                  ng-click="view.searchTerm=''; model.loadInitialSites()"

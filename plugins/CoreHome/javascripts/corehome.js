@@ -16,8 +16,12 @@
         var headerMessageParent = $('#header_message').parent();
 
         // when 'check for updates...' link is clicked, force a check & display the result
-        headerMessageParent.on('click', '#updateCheckLinkContainer', function (e) {
+        headerMessageParent.on('click', '.title', function (e) {
             e.preventDefault();
+
+            if (!$(this).find('#updateCheckLinkContainer').length) {
+                return;
+            }
 
             var headerMessage = $(this).closest('#header_message');
 
@@ -34,9 +38,11 @@
                     var newVersionAvailable = response.hasClass('header_alert');
                     if (newVersionAvailable) {
                         headerMessage.replaceWith(response);
+                        headerMessage.show();
                     }
                     else {
-                        headerMessage.html(_pk_translate('CoreHome_YouAreUsingTheLatestVersion')).show();
+                        headerMessage.find('.title').html(_pk_translate('CoreHome_YouAreUsingTheLatestVersion'));
+                        headerMessage.show();
                         setTimeout(function () {
                             headerMessage.fadeOut('slow', function () {
                                 headerMessage.replaceWith(response);
@@ -54,7 +60,7 @@
         // when clicking the header message, show the long message w/o needing to hover
         headerMessageParent.on('click', '#header_message', function (e) {
             if (e.target.tagName.toLowerCase() != 'a') {
-                $(this).toggleClass('active');
+                $(this).toggleClass('expanded');
             }
         });
 

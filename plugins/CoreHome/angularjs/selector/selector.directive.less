@@ -16,6 +16,10 @@
     .icon {
       padding-left: 5px;
       display: inline-block;
+
+      &.iconHidden {
+        visibility: hidden;
+      }
     }
 
     &:hover, &:focus {
@@ -24,13 +28,9 @@
   }
 
   .dropdown {
-    .font-default(11px, 12px);
+    .font-default(11px, 15px);
     display: none;
     padding: 5px 19px 11px 19px;
-  }
-
-  .icon.iconHidden {
-    visibility: hidden;
   }
 
   .expanded .activityIndicator {
@@ -42,7 +42,7 @@
     .dropdown {
       display: block;
     }
-    .icon {
+    .icon:not(.icon-fixed) {
       float: right;
       &:after {
         clear:right;

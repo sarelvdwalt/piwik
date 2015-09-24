@@ -82,7 +82,6 @@ table.entityTable tr td a:hover {
   border: 1px solid @theme-color-background-lowContrast;
   background: @theme-color-background-base;
   z-index: 10;
-  padding: 11px 24px 9px 24px;
   .border-radius(0px);
   .font-default(11px, 12px);
   > span {
@@ -132,23 +131,15 @@ table.entityTable tr td a:hover {
 .segmentEditorPanel {
   border: 1px solid @theme-color-background-lowContrast;
   background: @theme-color-background-base;
-  padding: 10px 19px;
   .border-radius(0px);
-  .segmentationTitle {
-    text-transform: uppercase;
-    .font-default(11px, 12px);
-    position: relative;
-  }
   .dropdown-body {
     background:@theme-color-background-base;
     padding:0 19px;
     .border-radius(0px);
-    border: 1px solid #f2f2f2;
     border-top-width: 0px;
   }
   &:hover .dropdown-body {
     background:@theme-color-background-base;
-    border-color: @color-silver-l80;
   }
   .segmentationContainer {
     > span > strong {
@@ -769,13 +760,9 @@ tr:hover #token_auth {
   background: #FFFFF7;
 }
 
-// previous style overrides
-#header_message a {
+#header_message .dropdown a,
+#header_message #updateCheckLinkContainer:hover {
     text-decoration: underline;
-}
-
-#header_message a:hover {
-    text-decoration: none;
 }
 
 #multisites table.dataTable {

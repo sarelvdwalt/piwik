@@ -3,32 +3,55 @@
 {% set test_piwikUrl='http://demo.piwik.org/' %}
 {% set isPiwikDemo %}{{ piwikUrl == 'http://demo.piwik.org/' or piwikUrl == 'https://demo.piwik.org/' }}{% endset %}
 
-{% if isPiwikDemo or (latest_version_available and hasSomeViewAccess and not isUserIsAnonymous) or (isSuperUser and adminMenu is defined and adminMenu) %}
-<div piwik-selector
-     expand-on-hover="true"
-     loading="false"
-     icon="reload"
-     menu-title="{% if isPiwikDemo %}{{ 'General_YouAreViewingDemoShortMessage'|translate }}{% elseif latest_version_available %}{{ 'General_NewUpdatePiwikX'|translate(latest_version_available) }}{% elseif isSuperUser and adminMenu is defined and adminMenu %}{{ 'CoreHome_CheckForUpdates'|translate }}{% endif %}"
+{% set updateCheck %}
+    <span id="updateCheckLinkContainer">
+                {{ 'CoreHome_CheckForUpdates'|translate }}
+        <span class="icon icon-fixed icon-reload"></span>
+    </span>
+{% endset %}
 
-     class="{% if isPiwikDemo or not latest_version_available %}header_info{% else %}header_alert{% endif %} {% if isPiwikDemo %}isPiwikDemo{% else %}piwikTopControl{% endif %}"
+{% if isPiwikDemo or (latest_version_available and hasSomeViewAccess and not isUserIsAnonymous) or (isSuperUser and adminMenu is defined and adminMenu) %}
+<div piwik-expand-on-hover
+     id="header_message"
+     class="selector borderedControl {% if isPiwikDemo or not latest_version_available %}header_info{% else %}header_alert{% endif %} {% if isPiwikDemo %}isPiwikDemo{% else %}piwikTopControl{% endif %}"
         >
-    {% if isPiwikDemo %}
-        {{ 'General_DownloadFullVersion'|translate("<a href='http://piwik.org/'>","</a>","<a href='http://piwik.org'>piwik.org</a>")|raw }}
-        <br/>
-        {% if isSuperUser and adminMenu is defined and adminMenu %}
+
+    <a class="title" href="#">
+        {% if isPiwikDemo %}
+            {{ 'General_YouAreViewingDemoShortMessage'|translate }}
+        {% elseif latest_version_available %}
+            {{ 'General_NewUpdatePiwikX'|translate(latest_version_available) }}
+        {% elseif isSuperUser and adminMenu is defined and adminMenu %}
+            {{ updateCheck|raw }}
+        {% endif %}
+    </a>
+
+    <div class="dropdown">
+        {% if isPiwikDemo %}
+            {{ 'General_DownloadFullVersion'|translate("<a href='http://piwik.org/'>","</a>","<a href='http://piwik.org'>piwik.org</a>")|raw }}
+            <br/>
+            {% if isSuperUser and adminMenu is defined and adminMenu %}
+                <br/>
+            {% endif %}
+        {% endif %}
+        {% if latest_version_available and isSuperUser %}
+            {{ 'General_PiwikXIsAvailablePleaseUpdateNow'|translate(latest_version_available,"<br /><a href='index.php?module=CoreUpdater&amp;action=newVersionAvailable'>","</a>","<a href='?module=Proxy&amp;action=redirect&amp;url=http://piwik.org/changelog/' target='_blank'>","</a>")|raw }}
+            <br />
+        {% elseif latest_version_available and not isPiwikDemo and hasSomeViewAccess and not isUserIsAnonymous %}
+            {% set updateSubject = 'General_NewUpdatePiwikX'|translate(latest_version_available)|e('url') %}
+            {{ 'General_PiwikXIsAvailablePleaseNotifyPiwikAdmin'|translate("<a href='?module=Proxy&action=redirect&url=http://piwik.org/' target='_blank'>Piwik</a> <a href='?module=Proxy&action=redirect&url=http://piwik.org/changelog/' target='_blank'>" ~ latest_version_available ~ "</a>", "<a href='mailto:" ~ superUserEmails ~ "?subject=" ~ updateSubject ~ "'>", "</a>")|raw }}
+            <br />
+        {% endif %}
+
+        {% if isPiwikDemo and isSuperUser and adminMenu is defined and adminMenu %}
+            <br/>
+            {{ updateCheck|raw }}
+            <br/>
             <br/>
         {% endif %}
-    {% endif %}
-    {% if latest_version_available and isSuperUser %}
-        {{ 'General_PiwikXIsAvailablePleaseUpdateNow'|translate(latest_version_available,"<br /><a href='index.php?module=CoreUpdater&amp;action=newVersionAvailable'>","</a>","<a href='?module=Proxy&amp;action=redirect&amp;url=http://piwik.org/changelog/' target='_blank'>","</a>")|raw }}
-        <br />
-    {% elseif latest_version_available and not isPiwikDemo and hasSomeViewAccess and not isUserIsAnonymous %}
-        {% set updateSubject = 'General_NewUpdatePiwikX'|translate(latest_version_available)|e('url') %}
-        {{ 'General_PiwikXIsAvailablePleaseNotifyPiwikAdmin'|translate("<a href='?module=Proxy&action=redirect&url=http://piwik.org/' target='_blank'>Piwik</a> <a href='?module=Proxy&action=redirect&url=http://piwik.org/changelog/' target='_blank'>" ~ latest_version_available ~ "</a>", "<a href='mailto:" ~ superUserEmails ~ "?subject=" ~ updateSubject ~ "'>", "</a>")|raw }}
-        <br />
-    {% endif %}
 
-    {{ 'General_YouAreCurrentlyUsing'|translate(piwik_version) }}
+        {{ 'General_YouAreCurrentlyUsing'|translate(piwik_version) }}
+    </div>
 </div>
 
 <div style="clear:right"></div>
