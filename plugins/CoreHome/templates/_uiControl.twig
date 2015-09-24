@@ -1,6 +1,9 @@
-<div class="{{ cssIdentifier }} {{ cssClass }}"
+<div class="{{ cssIdentifier }} {{ cssClass }} selector"
+     piwik-expand-on-click
      data-props="{{ clientSideProperties|json_encode }}"
      data-params="{{ clientSideParameters|json_encode }}">
+     <div selector="dropdown">
      {% render implView with implOverride %}
+     </div>
 </div>
 <script>$(document).ready(function () { require('{{ jsNamespace }}').{{ jsClass }}.initElements(); });</script>

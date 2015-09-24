@@ -15,10 +15,6 @@
     z-index: 300!important;
 }
 
-.sites_autocomplete, .sites_autocomplete .custom_select {
-    z-index: 200!important;
-}
-
 .submit {
     height: 30px;
 }

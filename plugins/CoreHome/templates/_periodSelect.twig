@@ -1,9 +1,9 @@
-<div piwik-selector
-     icon="calendar"
-     class="piwikTopControl"
-     id="periodString"
-     menu-title="{{ 'General_Date'|translate }}: {{ prettyDate|e('html_attr') }}">
-    <div id="periodMore">
+<div id="periodString" piwik-expand-on-click class="piwikTopControl selector borderedControl periodSelector">
+    <a id="date" class="title">
+        {{ 'General_Date'|translate }}: {{ prettyDate }}
+        <span class="icon icon-calendar"></span>
+    </a>
+    <div id="periodMore" class="dropdown">
         <div class="period-date">
             <div id="datepicker"></div>
         </div>
@@ -35,4 +35,3 @@
     </div>
     <div class="period-click-tooltip" style="display:none;">{{ 'General_ClickToChangePeriod'|translate }}</div>
 </div>
-

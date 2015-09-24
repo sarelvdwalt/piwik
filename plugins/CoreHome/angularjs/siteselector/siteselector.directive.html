@@ -1,5 +1,6 @@
-<div piwik-focus-anywhere-but-here="view.showSitesList=false" class="custom_select borderedControl"
-     ng-class="{'sites_autocomplete--dropdown': (model.hasMultipleWebsites || showAllSitesItem || !model.sites.length)}">
+<div piwik-focus-anywhere-but-here="view.showSitesList=false"
+     class="siteSelector selector borderedControl"
+     ng-class="{'sites_autocomplete--dropdown': (model.hasMultipleWebsites || showAllSitesItem || !model.sites.length), 'expanded': view.showSitesList}">
 
     <script type="text/ng-template" id="siteselector_allsiteslink.html">
         <div ng-click="switchSite({idsite: 'all', name: allSitesText});view.showSitesList=false;"
@@ -14,12 +15,16 @@
 
     <a ng-click="view.showSitesList=!view.showSitesList; view.showSitesList && model.loadInitialSites();"
        href="javascript:void(0)"
-       class="custom_select_main_link"
-       ng-class="{'loading': model.isLoading, 'expanded': view.showSitesList}">
-        <span>{{ 'General_Website'| translate }}:</span> <span ng-bind-html="selectedSite.name || model.firstSiteName">?</span>
+       ng-class="{'loading': model.isLoading}"
+       class="title">
+        <span>{{ 'General_Website'| translate }}:</span>
+        <span ng-bind-html="selectedSite.name || model.firstSiteName">?</span>
+
+        <span class="icon icon-arrow-bottom"
+                ng-class="{'iconHidden': model.isLoading}"></span>
     </a>
 
-    <div ng-show="view.showSitesList" class="custom_select_block">
+    <div ng-show="view.showSitesList" class="dropdown">
         <div ng-if="allSitesLocation=='top' && showAllSitesItem"
              ng-include="'siteselector_allsiteslink.html'"></div>
 

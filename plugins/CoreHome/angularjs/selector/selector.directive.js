@@ -9,28 +9,38 @@
  *
  */
 (function () {
-    angular.module('piwikApp').directive('piwikSelector', piwikSelector);
+    angular.module('piwikApp').directive('piwikExpandOnClick', piwikExpandOnClick);
 
-    function piwikSelector($window){
+    piwikExpandOnClick.$inject = ['$document'];
+
+    function piwikExpandOnClick($document){
 
         return {
-            transclude: true,
-            replace: true,
             restrict: 'A',
-            scope: {
-                menuTitle: '@',
-                tooltip: '@',
-                icon: '@',
-                loading: '=',
-                expandOnHover: '='
-            },
-            templateUrl: 'plugins/CoreHome/angularjs/selector/selector.directive.html?cb=' + piwik.cacheBuster,
-            link: function(scope, element, attrs) {
+            link: function(scope, element, attr) {
 
-                scope.toggleVisibility = function ()
-                {
-                    scope.$eval('view.showDropdown = !view.showDropdown');
-                };
+                element.find('.title').on('click', function () {
+                    element.toggleClass('expanded');
+                });
+
+                function onClickOutsideElement (event) {
+                    if (element.has(event.target).length === 0) {
+                        element.removeClass('expanded');
+                    }
+                }
+
+                function onEscapeHandler (event) {
+                    if (event.which === 27) {
+                        element.removeClass('expanded');
+                    }
+                }
+
+                $document.on('keyup', onEscapeHandler);
+                $document.on('mouseup', onClickOutsideElement);
+                scope.$on('$destroy', function() {
+                    $document.off('mouseup', onClickOutsideElement);
+                    $document.off('keyup', onEscapeHandler);
+                });
             }
         };
     }
