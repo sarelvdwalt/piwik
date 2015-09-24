@@ -15,20 +15,27 @@
       display: inline-block;
     }
 
-    .item {
+    .topBarElem {
       color: #0d0d0d;
       text-decoration: none;
       padding: 14px 12px;
       display: inline-block;
+      height: 100%;
 
       &:hover {
         background-color: #efefef;
       }
-      height: 100%;
-      color: @theme-color-text-lighter;
 
       &.active {
         color: #d4291f;
+      }
+
+      .menuDropdown {
+        color: #0d0d0d;
+        .title:after {
+          color: #0d0d0d;
+          border-top-color: #0d0d0d;
+        }
       }
     }
 
