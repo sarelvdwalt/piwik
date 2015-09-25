@@ -576,6 +576,7 @@ describe("UIIntegrationTest", function () { // TODO: Rename to Piwik?
     it('should reload to the correct date when a date range is selected in the period selector', function (done) {
         expect.screenshot('period_select_date_range_click').to.be.capture(function (page) {
             page.load("?" + urlBase + "#" + generalParams + "&module=VisitTime&action=index");
+            page.wait(1000);
             page.evaluate(function () {
                 $(document).ready(function () {
                     $('#date').click();
