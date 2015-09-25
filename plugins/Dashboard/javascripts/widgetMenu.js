@@ -228,7 +228,11 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
                 if ($('.' + settings.categorylistClass + ' .' + settings.choosenClass, widgetPreview).length) {
                     var position = $('.' + settings.categorylistClass + ' .' + settings.choosenClass, widgetPreview).position().top -
                         $('.' + settings.categorylistClass, widgetPreview).position().top +
-                        $('.dashboard-manager .addWidget').outerHeight() + 10 // padding;
+                        $('.dashboard-manager .addWidget').outerHeight();
+
+                    if (!$('#content.admin').length) {
+                        position += 10; // + padding defined in dashboard view
+                    }
 
                     $('.' + settings.widgetlistClass, widgetPreview).css('top', position);
                     $('.' + settings.widgetlistClass, widgetPreview).css('marginBottom', position);
