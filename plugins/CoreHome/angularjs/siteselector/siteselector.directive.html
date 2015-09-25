@@ -55,9 +55,8 @@
                    ng-click="view.searchTerm=''"
                    ng-model="view.searchTerm"
                    ng-change="model.searchSite(view.searchTerm)"
+                   placeholder="{{ 'General_Search' | translate }}"
                    class="websiteSearch inp"/>
-            <span ng-click="model.searchSite(view.searchTerm)"
-                  title="{{ 'General_Search' | translate }}" class="icon-search"/>
             <img title="Clear"
                  ng-show="view.searchTerm"
                  ng-click="view.searchTerm=''; model.loadInitialSites()"
