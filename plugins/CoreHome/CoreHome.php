@@ -261,8 +261,9 @@ class CoreHome extends \Piwik\Plugin
         $translationKeys[] = 'General_LoadingData';
         $translationKeys[] = 'General_ErrorRequest';
         $translationKeys[] = 'General_YourChangesHaveBeenSaved';
+        $translationKeys[] = 'General_LearnMore';
         $translationKeys[] = 'CoreHome_UndoPivotBySubtable';
         $translationKeys[] = 'CoreHome_PivotBySubtable';
-        $translationKeys[] = 'General_LearnMore';
+        $translationKeys[] = 'CoreHome_QuickAccessTitle';
     }
 }
