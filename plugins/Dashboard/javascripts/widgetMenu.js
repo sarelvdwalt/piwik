@@ -282,6 +282,7 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
                 $('li:not(.' + settings.unavailableClass + ')', widgetList).on('click', function () {
                     if (!$('.widgetLoading', widgetPreview).length) {
                         settings.onSelect($(this).attr('uniqueid'));
+                        $(widgetPreview).closest('.dashboard-manager').removeClass('expanded');
                         if (settings.resetOnSelect) {
                             resetWidgetPreview(widgetPreview);
                         }
@@ -342,6 +343,7 @@ widgetsHelper.loadWidgetAjax = function (widgetUniqueId, widgetParameters, onWid
                     settings.onPreviewLoaded(widgetUniqueId, widgetElement);
                     $('.' + settings.widgetpreviewClass + ' .widgetTop', widgetPreview).on('click', function () {
                         settings.onSelect(widgetUniqueId);
+                        $(widgetPreview).closest('.dashboard-manager').removeClass('expanded');
                         if (settings.resetOnSelect) {
                             resetWidgetPreview(widgetPreview);
                         }

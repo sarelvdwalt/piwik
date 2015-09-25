@@ -18,9 +18,17 @@
         return {
             restrict: 'A',
             link: function(scope, element, attr) {
+                var $title = element.find('.title');
 
-                element.find('.title').on('click', function () {
+                $title.on('click', function () {
                     element.toggleClass('expanded');
+                });
+
+                $title.bind("keydown keypress", function(event) {
+                    if(event.which === 13) {
+                        element.toggleClass('expanded');
+                        event.preventDefault();
+                    }
                 });
 
                 function onClickOutsideElement (event) {
