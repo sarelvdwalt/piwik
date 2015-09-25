@@ -33,9 +33,12 @@ menu.prototype =
             return false;
         }
 
-        if (!$(this).attr('href')) {
+        var href = $(this).attr('href');
+        if (!href) {
             return false;
         }
+
+        return true;
     },
 
     isAdmin: function () {
