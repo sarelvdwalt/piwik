@@ -13,7 +13,7 @@
 {% if isPiwikDemo or (latest_version_available and hasSomeViewAccess and not isUserIsAnonymous) or (isSuperUser and adminMenu is defined and adminMenu) %}
 <div piwik-expand-on-hover
      id="header_message"
-     class="selector borderedControl {% if isPiwikDemo or not latest_version_available %}header_info{% else %}header_alert{% endif %} {% if isPiwikDemo %}isPiwikDemo{% else %}piwikTopControl{% endif %}"
+     class="piwikSelector borderedControl {% if isPiwikDemo or not latest_version_available %}header_info{% else %}header_alert{% endif %} {% if isPiwikDemo %}isPiwikDemo{% else %}piwikTopControl{% endif %}"
         >
 
     <a class="title" href="#">
