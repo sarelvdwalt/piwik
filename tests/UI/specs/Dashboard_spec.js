@@ -123,7 +123,7 @@ describe("Dashboard", function () {
 
     it("should add a widget when a widget is selected in the dashboard manager", function (done) {
         expect.screenshot("widget_add_widget").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
 
             page.mouseMove('.widgetpreview-categorylist>li:contains(Live!)'); // have to mouse move twice... otherwise Live! will just be highlighted
             page.mouseMove('.widgetpreview-categorylist>li:contains(Visits Summary)');
@@ -145,7 +145,7 @@ describe("Dashboard", function () {
 
     it("should change dashboard layout when new layout is selected", function (done) {
         expect.screenshot("change_layout").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=showChangeDashboardLayoutDialog]');
             page.click('div[layout=50-50]');
             page.click('.ui-dialog button>span:contains(Save)', 3000);
@@ -154,7 +154,7 @@ describe("Dashboard", function () {
 
     it("should rename dashboard when dashboard rename process completed", function (done) {
         expect.screenshot("rename").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=renameDashboard]');
             page.evaluate(function () {
                 $('#newDashboardName:visible').val('newname'); // don't use sendKeys or click, since in this test it appears to trigger a seg fault on travis
@@ -165,7 +165,7 @@ describe("Dashboard", function () {
 
     it("should copy dashboard successfully when copy dashboard process completed", function (done) {
         expect.screenshot("copied").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=copyDashboardToUser]');
             page.evaluate(function () {
                 $('#copyDashboardName').val('');
@@ -182,7 +182,7 @@ describe("Dashboard", function () {
 
     it("should reset dashboard when reset dashboard process completed", function (done) {
         expect.screenshot("reset").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=resetDashboard]');
             page.click('.ui-dialog button>span:contains(Yes)', 10000);
             page.mouseMove('.dashboard-manager');
@@ -191,7 +191,7 @@ describe("Dashboard", function () {
 
     it("should remove dashboard when remove dashboard process completed", function (done) {
         expect.screenshot("removed").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=removeDashboard]');
             page.click('.ui-dialog[aria-describedby=removeDashboardConfirm] button>span:contains(Yes)');
             page.mouseMove('.dashboard-manager');
@@ -204,7 +204,7 @@ describe("Dashboard", function () {
     it("should not fail when default widget selection changed", function (done) {
         expect.screenshot("default_widget_selection_changed").to.be.capture(function (page) {
             page.load(url);
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=setAsDefaultWidgets]');
             page.click('.ui-dialog button>span:contains(Yes)');
         }, done);
@@ -212,7 +212,7 @@ describe("Dashboard", function () {
 
     it("should create new dashboard with new default widget selection when create dashboard process completed", function (done) {
         expect.screenshot("create_new").to.be.capture(function (page) {
-            page.click('.dashboard-manager');
+            page.click('.dashboard-manager .title');
             page.click('li[data-action=createDashboard]');
             page.sendKeys('#createDashboardName', 'newdash2');
             page.click('.ui-dialog[aria-describedby=createDashboardConfirm] button>span:contains(Yes)');
