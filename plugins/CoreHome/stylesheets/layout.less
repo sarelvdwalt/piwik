@@ -114,7 +114,7 @@
     }
 
     .navbar {
-      background-color: @theme-color-background-tinyContrast;
+      background-color: @theme-color-menu-contrast-background;
 
       > li {
         display: inline-block;
@@ -129,7 +129,7 @@
           font-family: Verdana, sans-serif;
           .font-default(13px, 21px);
           padding: 14px 21px 14px 19px;
-          color: @theme-color-text;
+          color: @theme-color-menu-contrast-text;
           decoration: none !important;
 
           &:hover, &:focus {
@@ -141,7 +141,7 @@
           font-weight: bold;
           &:hover {
             text-decoration: none;
-            color: @theme-color-brand;
+            color: @theme-color-menu-contrast-textActive;
           }
         }
 
@@ -155,13 +155,14 @@
               decoration: none;
               &:hover {
                 text-decoration: none;
-                color: @theme-color-brand;
+                color: @theme-color-menu-contrast-textActive;
               }
             }
 
             &.sfActive {
               .item {
                 background-color: @theme-color-background-base;
+                color: @theme-color-text;
                 decoration: none;
               }
             }
