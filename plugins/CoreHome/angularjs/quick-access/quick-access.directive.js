@@ -15,9 +15,9 @@
 (function () {
     angular.module('piwikApp').directive('piwikQuickAccess', QuickAccessDirective);
 
-    QuickAccessDirective.$inject = ['$rootElement', '$timeout', '$filter', 'piwik'];
+    QuickAccessDirective.$inject = ['$rootElement', '$timeout', '$filter', 'siteSelectorModel', 'piwik'];
 
-    function QuickAccessDirective ($rootElement, $timeout, $filter, piwik) {
+    function QuickAccessDirective ($rootElement, $timeout, $filter, siteSelectorModel, piwik) {
 
         return {
             restrict: 'A',
@@ -32,6 +32,8 @@
 
                 scope.reportEntries = [];
                 scope.menuItems  = [];
+                scope.sitesModel = siteSelectorModel;
+                scope.hasSitesSelector = angular.element('[piwik-siteselector]').length;
 
                 function getMenuItems()
                 {
@@ -39,7 +41,7 @@
                         return menuItems;
                     }
 
-                    $rootElement.find('#header .navbar-right a').each(function (index, element) {
+                    $rootElement.find('#firstNavBar a').each(function (index, element) {
                         var text = $(element).text();
 
                         if (text) {
@@ -136,6 +138,14 @@
 
                     this.menuItems     = $filter('filter')(getMenuItems(), searchTerm);
                     this.reportEntries = $filter('filter')(getReportEntries(), searchTerm);
+
+                    if (scope.hasSitesSelector) {
+                        this.sitesModel.searchSite(searchTerm);
+                    }
+                };
+
+                scope.selectSite = function (idsite) {
+                    this.sitesModel.loadSite(idsite);
                 };
 
                 scope.selectMenuItem = function (index) {

@@ -28,5 +28,19 @@
             ng-mouseenter="search.index=((menuItems | length) + $index)"
             ng-click="selectMenuItem(report.index)"
             ng-repeat="report in reportEntries"><a>{{ report.name | trim }}</a></li>
+
+        <li class="quick-access-category"
+            ng-show="hasSitesSelector"
+            ng-click="search('%')">{{ 'SitesManager_Sites' | translate }}</li>
+        <li class="no-result"
+            ng-hide="!hasSitesSelector || (sitesModel.sites | length) || sitesModel.isLoading">---</li>
+        <li class="no-result"
+            ng-show="hasSitesSelector && sitesModel.isLoading">{{ 'MultiSites_LoadingWebsites' | translate }}</li>
+        <li class="result"
+            ng-show="hasSitesSelector && !sitesModel.isLoading"
+            ng-mouseenter="search.index=((menuItems | length) + $index + (reportEntries | length))"
+            ng-class="{selected: ((menuItems | length) + $index + (reportEntries | length)) == search.index}"
+            ng-click="selectSite(site.idsite)"
+            ng-repeat="site in sitesModel.sites"><a ng-bind-html="site.name"></a></li>
     </ul>
 </div>
