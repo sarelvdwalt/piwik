@@ -31,23 +31,26 @@
             {{ menu.menu(userMenu, false) }}
         {% endif %}
 
-        <div id="content" class="pageWrap admin user">
+        <div class="pageWrap">
 
             <div class="top_controls">
                 {% block topcontrols %}
                 {% endblock %}
             </div>
 
-            {% include "@CoreHome/_notifications.twig" %}
+            <div id="content" class="admin user">
 
-            <div class="ui-confirm" id="alert">
-                <h2></h2>
-                <input role="no" type="button" value="{{ 'General_Ok'|translate }}"/>
+                {% include "@CoreHome/_notifications.twig" %}
+
+                <div class="ui-confirm" id="alert">
+                    <h2></h2>
+                    <input role="no" type="button" value="{{ 'General_Ok'|translate }}"/>
+                </div>
+
+                {% block content %}
+                {% endblock %}
+
             </div>
-
-            {% block content %}
-            {% endblock %}
-
         </div>
     </div>
 {% endblock %}

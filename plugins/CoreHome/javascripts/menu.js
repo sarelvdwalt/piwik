@@ -38,6 +38,10 @@ menu.prototype =
         }
     },
 
+    isAdmin: function () {
+      return !!$('#content.admin').size();
+    },
+
     init: function () {
         this.menuNode = $('#secondNavBar');
 
@@ -90,6 +94,8 @@ menu.prototype =
 
         this.menuNode.find('li').removeClass('sfActive');
 
+        var isAdmin = this.isAdmin();
+
         var $activeLink = this.menuNode.find('a').filter(function () {
             var url = $(this).attr('href');
             if (!url) {
@@ -103,7 +109,14 @@ menu.prototype =
                     continue;
                 }
 
-                var actual = broadcast.getValueFromHash(key, url);
+                var actual;
+
+                if (isAdmin) {
+                    actual = broadcast.getValueFromUrl(key, url);
+                } else {
+                    actual = broadcast.getValueFromHash(key, url);
+                }
+
                 if (actual != params[key]) {
                     return false;
                 }

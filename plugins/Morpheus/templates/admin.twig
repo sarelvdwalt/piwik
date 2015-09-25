@@ -29,7 +29,7 @@
             {{ menu.menu(adminMenu, false) }}
         {% endif %}
 
-        <div class="pageWrap admin" id="content">
+        <div class="pageWrap">
 
             <div class="top_controls">
                 {% block topcontrols %}
@@ -38,17 +38,20 @@
                 {% include "@CoreHome/_headerMessage.twig" %}
             </div>
 
-            {% include "@CoreHome/_notifications.twig" %}
-            {% include "@CoreHome/_warningInvalidHost.twig" %}
+            <div class="admin" id="content">
 
-            <div class="ui-confirm" id="alert">
-                <h2></h2>
-                <input role="no" type="button" value="{{ 'General_Ok'|translate }}"/>
+                {% include "@CoreHome/_notifications.twig" %}
+                {% include "@CoreHome/_warningInvalidHost.twig" %}
+
+                <div class="ui-confirm" id="alert">
+                    <h2></h2>
+                    <input role="no" type="button" value="{{ 'General_Ok'|translate }}"/>
+                </div>
+
+                {% block content %}
+                {% endblock %}
+
             </div>
-
-            {% block content %}
-            {% endblock %}
-
         </div>
     </div>
 
