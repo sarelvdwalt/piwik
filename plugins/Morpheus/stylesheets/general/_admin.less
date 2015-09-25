@@ -19,6 +19,16 @@
 
     .sites_autocomplete {
         position: static !important;
+        min-height: 36px;
+
+        > .siteSelector {
+           position: absolute;
+           z-index: 9999;
+        }
+
+        a.title {
+            text-decoration: none;
+        }
     }
 }
 
