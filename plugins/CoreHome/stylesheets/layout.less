@@ -81,24 +81,6 @@
     margin-right:15px;
   }
 
-  .top_controls {
-    min-height: 46px;
-    position: relative;
-    background-color: #fff;
-    height: auto;
-
-    .piwikTopControl {
-      display: inline-block;
-      float: none;
-      position: absolute;
-      margin-top: 8px;
-      margin-bottom: 8px;
-      margin-right: 10px;
-      vertical-align: top;
-      font-size: 11px;
-    }
-  }
-
   @media all and (max-width: 749px) {
     .top_controls {
       height: auto;
@@ -110,15 +92,6 @@
       position: static !important;
       margin: 0 0 10px;
       float: none;
-    }
-  }
-
-  .borderedControl {
-    background-color: #fff;
-    border: 1px solid #f2f2f2;
-    &.expanded,
-    &:hover {
-      box-shadow: 0 1px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
     }
   }
 
@@ -239,6 +212,42 @@
           }
         }
       }
+    }
+  }
+}
+
+#root {
+  .top_controls {
+    .piwikTopControl {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+#root, #standalone {
+  .top_controls {
+    min-height: 46px;
+    position: relative;
+    background-color: #fff;
+    height: auto;
+
+    .piwikTopControl {
+      display: inline-block;
+      float: none;
+      position: absolute;
+      margin-right: 10px;
+      vertical-align: top;
+      font-size: 11px;
+    }
+  }
+
+  .borderedControl {
+    background-color: #fff;
+    border: 1px solid #f2f2f2;
+    &.expanded,
+    &:hover {
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
     }
   }
 }
