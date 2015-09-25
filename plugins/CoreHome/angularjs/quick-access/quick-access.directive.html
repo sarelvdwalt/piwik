@@ -1,11 +1,10 @@
 <div class="quick-access" title="{{ 'CoreHome_QuickAccessTitle' | translate }}. You can press alt+f to active this search."
      ng-class="{active: view.searchActive}"
-     piwik-focus-anywhere-but-here="view.searchActive = false;"
-     ng-mouseleave="view.searchActive=false"
-     ng-mouseenter="view.searchActive=true">
+     piwik-focus-anywhere-but-here="view.searchActive = false;">
     <span class="icon-search" ng-hide="search.term || view.searchActive"></span>
     <input ng-keydown="onKeypress($event)"
-           ng-change="search(search.term)"
+           ng-change="view.searchActive=true;search(search.term)"
+           ng-focus="view.searchActive=true"
            ng-model="search.term" piwik-focus-if="view.searchActive"
            type="text"/>
     <ul ng-show="search.term && view.searchActive">

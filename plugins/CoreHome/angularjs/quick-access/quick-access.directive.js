@@ -35,6 +35,10 @@
                 scope.sitesModel = siteSelectorModel;
                 scope.hasSitesSelector = angular.element('[piwik-siteselector]').length;
 
+                function trim(str) {
+                    return str.replace(/^\s+|\s+$/g,'');
+                }
+
                 function getMenuItems()
                 {
                     if (menuItems && menuItems.length) {
@@ -42,7 +46,7 @@
                     }
 
                     $rootElement.find('#firstNavBar a').each(function (index, element) {
-                        var text = $(element).text();
+                        var text = trim($(element).text());
 
                         if (text) {
                             menuItems.push({name: text, index: ++menuIndex, category: 'menuCategory'});
@@ -60,7 +64,7 @@
                     }
 
                     $rootElement.find('#secondNavBar a').each(function (index, element) {
-                        var text = $(element).text();
+                        var text = trim($(element).text());
 
                         if (text) {
                             reportEntries.push({name: text, category: 'reportCategory', index: ++menuIndex});
