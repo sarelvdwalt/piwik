@@ -34,11 +34,7 @@ menu.prototype =
         }
 
         var href = $(this).attr('href');
-        if (!href) {
-            return false;
-        }
-
-        return true;
+        return !!href;
     },
 
     isAdmin: function () {

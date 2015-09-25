@@ -14,6 +14,11 @@ describe("Menus", function () {
         urlBase = 'module=CoreHome&action=index&' + generalParams
         ;
 
+    function openMenuItem(page, menuItem)
+    {
+        page.click('#secondNavBar .navbar a:contains('+ menuItem + ')');
+    }
+
     // main menu tests
     it('should load the main reporting menu correctly', function (done) {
         expect.screenshot('mainmenu_loaded').to.be.captureSelector('#secondNavBar', function (page) {
@@ -42,7 +47,8 @@ describe("Menus", function () {
 
     it('should change the user page correctly when a user menu item is clicked', function (done) {
         expect.screenshot('user_changed').to.be.captureSelector('#secondNavBar', function (page) {
-            page.click('#secondNavBar .navbar a:contains(API)');
+            openMenuItem('Platform');
+            openMenuItem('API');
         }, done);
     });
 
@@ -55,7 +61,8 @@ describe("Menus", function () {
 
     it('should change the admin page correctly when an admin menu item is clicked', function (done) {
         expect.screenshot('admin_changed').to.be.captureSelector('#secondNavBar', function (page) {
-            page.click('#secondNavBar .navbar a:contains(Websites)');
+            openMenuItem('Administration');
+            openMenuItem('Websites');
         }, done);
     });
 });
