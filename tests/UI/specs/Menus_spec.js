@@ -47,8 +47,8 @@ describe("Menus", function () {
 
     it('should change the user page correctly when a user menu item is clicked', function (done) {
         expect.screenshot('user_changed').to.be.captureSelector('#secondNavBar', function (page) {
-            openMenuItem('Platform');
-            openMenuItem('API');
+            openMenuItem(page, 'Platform');
+            openMenuItem(page, 'API');
         }, done);
     });
 
@@ -61,8 +61,8 @@ describe("Menus", function () {
 
     it('should change the admin page correctly when an admin menu item is clicked', function (done) {
         expect.screenshot('admin_changed').to.be.captureSelector('#secondNavBar', function (page) {
-            openMenuItem('Administration');
-            openMenuItem('Websites');
+            openMenuItem(page, 'Administration');
+            openMenuItem(page, 'Websites');
         }, done);
     });
 });
