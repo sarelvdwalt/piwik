@@ -31,9 +31,14 @@
                 module: 'CoreHome',
                 action: 'checkForUpdates'
             }, 'get');
+
+            var $titleElement = $(this);
+            $titleElement.addClass('activityIndicator');
             ajaxRequest.setCallback(function (response) {
                 headerMessage.fadeOut('slow', function () {
                     response = $(response);
+
+                    $titleElement.removeClass('activityIndicator');
 
                     var newVersionAvailable = response.hasClass('header_alert');
                     if (newVersionAvailable) {

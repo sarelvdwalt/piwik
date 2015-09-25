@@ -499,13 +499,13 @@ div.scrollable {
     height: 16px;
 }
 
-.segmentEditorPanel.visible .segmentationContainer {
+.segmentEditorPanel.expanded .segmentationContainer {
     width: 200px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
-.segmentEditorPanel.visible ul.submenu {
+.segmentEditorPanel.expanded ul.submenu {
     display: inline-block;
     list-style: none;
 }
@@ -515,7 +515,7 @@ div.scrollable {
     display: inline-block;
 }
 
-.segmentEditorPanel.visible .segmentFilterContainer > input[type="text"] {
+.segmentEditorPanel.expanded .segmentFilterContainer > input[type="text"] {
     font-size: 11px;
     width: 100%;
     padding: 0;
@@ -525,7 +525,7 @@ div.scrollable {
     padding: 7px 10px 7px 10px;
 }
 
-.segmentEditorPanel.visible .segmentFilterContainer > span {
+.segmentEditorPanel.expanded .segmentFilterContainer > span {
     position: absolute;
     width: 13px;
     height: 13px;
@@ -534,15 +534,15 @@ div.scrollable {
     cursor: pointer;
 }
 
-.segmentEditorPanel.visible .segmentFilterContainer:hover > span {
+.segmentEditorPanel.expanded .segmentFilterContainer:hover > span {
     background: url(plugins/SegmentEditor/images/reset_search.png);
 }
 
-.segmentEditorPanel.visible .filterNoResults {
+.segmentEditorPanel.expanded .filterNoResults {
     font-style: italic;
 }
 
-.segmentEditorPanel.visible .add_new_segment {
+.segmentEditorPanel.expanded .add_new_segment {
     clear: both;
     float: right;
     margin: 12px 9px 10px 0;
@@ -659,7 +659,7 @@ a.metric_category {
 
 @media all and (max-width: 749px) {
     span.segmentationTitle,
-    .segmentEditorPanel.visible .segmentationContainer {
+    .segmentEditorPanel.expanded .segmentationContainer {
         width: auto;
     }
 }
@@ -672,7 +672,7 @@ a.metric_category {
     border-bottom-right-radius: 4px;
 }
 
-.segmentEditorPanel.visible .dropdown-body {
+.segmentEditorPanel.expanded .dropdown-body {
     display: block;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
@@ -683,7 +683,7 @@ a.metric_category {
     background: #f1f0eb
 }
 
-.segmentEditorPanel.visible {
+.segmentEditorPanel.expanded {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
@@ -715,7 +715,7 @@ a.metric_category {
     max-width: 145px;
 }
 
-.segmentEditorPanel.visible .segmentationTitle {
+.segmentEditorPanel.expanded .segmentationTitle {
     max-width: 200px;
     overflow: visible; /* restore default */
     white-space: normal; /* restore default */
