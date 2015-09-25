@@ -185,6 +185,11 @@ table.entityTable tr td a:hover {
 #standalone {
 
   #Dashboard {
+    position: relative;
+    
+    &:hover ul {
+      background-color: #fff;
+    }
     ul {
       padding: 0 19px;
       color: @theme-color-text-light;
@@ -192,6 +197,7 @@ table.entityTable tr td a:hover {
       line-height:0.5em;
       .border-radius(0px);
       border: 0;
+      background-color: #fff;
     }
     > ul > li {
       white-space: nowrap;
