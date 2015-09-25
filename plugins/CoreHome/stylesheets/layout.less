@@ -1,6 +1,6 @@
  #header {
   padding: 0 15px;
-  background-color: #fff;
+  background-color: @theme-color-background-base;
   height: 49px; // 48px + 1px border
 
   /* Clear fix */
@@ -16,25 +16,25 @@
     }
 
     .topBarElem {
-      color: #0d0d0d;
+      color: @theme-color-text;
       text-decoration: none;
       padding: 14px 12px;
       display: inline-block;
       height: 100%;
 
       &:hover {
-        background-color: #efefef;
+        background-color: @theme-color-background-tinyContrast;
       }
 
       &.active {
-        color: #d4291f;
+        color: @theme-color-brand;
       }
 
       .menuDropdown {
-        color: #0d0d0d;
+        color: @theme-color-text;
         .title:after {
-          color: #0d0d0d;
-          border-top-color: #0d0d0d;
+          color: @theme-color-text;
+          border-top-color: @theme-color-text;
         }
       }
     }
@@ -114,7 +114,7 @@
     }
 
     .navbar {
-      background-color: #f2f2f2;
+      background-color: @theme-color-background-tinyContrast;
 
       > li {
         display: inline-block;
@@ -129,7 +129,7 @@
           font-family: Verdana, sans-serif;
           .font-default(13px, 21px);
           padding: 14px 21px 14px 19px;
-          color: #0d0d0d;
+          color: @theme-color-text;
           decoration: none !important;
 
           &:hover, &:focus {
@@ -141,7 +141,7 @@
           font-weight: bold;
           &:hover {
             text-decoration: none;
-            color: #d4291f;
+            color: @theme-color-brand;
           }
         }
 
@@ -155,13 +155,13 @@
               decoration: none;
               &:hover {
                 text-decoration: none;
-                color: #d4291f;
+                color: @theme-color-brand;
               }
             }
 
             &.sfActive {
               .item {
-                background-color: white;
+                background-color: @theme-color-background-base;
                 decoration: none;
               }
             }
@@ -228,7 +228,7 @@
   .top_controls {
     min-height: 46px;
     position: relative;
-    background-color: #fff;
+    background-color: @theme-color-background-base;
     height: auto;
 
     .piwikTopControl {
@@ -242,8 +242,8 @@
   }
 
   .borderedControl {
-    background-color: #fff;
-    border: 1px solid #f2f2f2;
+    background-color: @theme-color-background-base;
+    border: 1px solid @theme-color-background-tinyContrast;
     &.expanded,
     &:hover {
       box-shadow: 0 1px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
