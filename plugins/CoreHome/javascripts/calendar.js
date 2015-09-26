@@ -440,13 +440,6 @@
             toggleMonthDropdown(selectedPeriod == 'year');
         });
 
-        // reset date/period when opening calendar
-        $("#periodString").on('click', "#date,.calendar-icon", function () {
-            if (periodMore.is(":visible")) {
-                periodMore.find(".ui-state-highlight").removeClass('ui-state-highlight');
-            }
-        });
-
         function onDateRangeSelect(dateText, inst) {
             var toOrFrom = inst.id == 'calendarFrom' ? 'From' : 'To';
             $('#inputCalendar' + toOrFrom).val(dateText);
