@@ -137,6 +137,8 @@ PageRenderer.prototype._sendMouseEvent = function (type, pos, callback) {
 PageRenderer.prototype._click = function (selector, modifiers, callback) {
     var position = this._getPosition(selector);
 
+    this._makeSurePositionIsInViewPort(position.x, position.y);
+
     if (modifiers.length) {
         var self = this;
         modifiers = modifiers.reduce(function (previous, mStr) {
@@ -150,6 +152,47 @@ PageRenderer.prototype._click = function (selector, modifiers, callback) {
     }
 
     callback();
+};
+
+PageRenderer.prototype._makeSurePositionIsInViewPort = function (width, height) {
+
+    var currentWidth  = this._getViewportWidth();
+    var currentHeight = this._getViewportHeight();
+
+    var update = false;
+
+    if (width >= currentWidth && width > 0) {
+        currentWidth = width + 50;
+        update = true;
+    }
+
+    if (height >= currentHeight && height > 0) {
+        currentHeight = height + 50;
+        update = true;
+    }
+
+    if (update) {
+        this.setViewportSize(currentWidth, currentHeight);
+        this._setCorrectViewportSize();
+    }
+};
+
+PageRenderer.prototype._getViewportWidth = function () {
+    var width = 1350;
+    if (this._viewportSizeOverride && this._viewportSizeOverride.width) {
+        width = this._viewportSizeOverride.width;
+    }
+
+    return width;
+};
+
+PageRenderer.prototype._getViewportHeight = function () {
+    var height = 768;
+    if (this._viewportSizeOverride && this._viewportSizeOverride.height) {
+        height = this._viewportSizeOverride.height;
+    }
+
+    return height;
 };
 
 PageRenderer.prototype._keypress = function (keys, callback) {
@@ -575,7 +618,7 @@ PageRenderer.prototype._waitForNextEvent = function (events, callback, i, waitTi
 };
 
 PageRenderer.prototype._setCorrectViewportSize = function () {
-    var viewportSize = this._viewportSizeOverride || {width:1350, height:768};
+    var viewportSize = {width: this._getViewportWidth(), height: this._getViewportHeight()};
 
     this.webpage.viewportSize = viewportSize;
     var height = Math.max(viewportSize.height, this.webpage.evaluate(function() {
