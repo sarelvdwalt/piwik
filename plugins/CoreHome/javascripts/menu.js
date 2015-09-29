@@ -90,16 +90,6 @@ menu.prototype =
         var self = this;
         $('#header .toggle-second-menu').click(function () {
             self.menuNode.toggleClass('open fadeInLeft');
-            return;
-            if (1) {
-                self.menuNode.fadeIn({complete: function () {
-                    self.menuNode.removeClass('open');
-                }});
-            } else {
-                self.menuNode.fadeIn({complete: function () {
-                    self.menuNode.removeClass('open');
-                }});
-            }
         });
     },
 
