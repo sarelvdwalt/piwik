@@ -2,10 +2,12 @@
 {% import 'ajaxMacros.twig' as ajax %}
 
 {% block topcontrols %}
-    {% include "@CoreHome/_siteSelectHeader.twig" %}
     {% include "@CoreHome/_periodSelect.twig" %}
     {{ postEvent("Template.nextToCalendar") }}
     {% render dashboardSettingsControl %}
+    <div style="float:right">
+    {% include "@CoreHome/_siteSelectHeader.twig" %}
+    </div>
     {% include "@CoreHome/_headerMessage.twig" %}
     {{ ajax.requestErrorDiv(emailSuperUser|default('')) }}
 {% endblock %}
