@@ -13,13 +13,14 @@
 {% if isPiwikDemo or (latest_version_available and hasSomeViewAccess and not isUserIsAnonymous) or (isSuperUser and adminMenu is defined and adminMenu) %}
 <div piwik-expand-on-hover
      id="header_message"
-     class="piwikSelector borderedControl {% if isPiwikDemo or not latest_version_available %}header_info{% else %}header_alert{% endif %} {% if isPiwikDemo %}isPiwikDemo{% else %}piwikTopControl{% endif %}"
+     class="piwikSelector borderedControl {% if isPiwikDemo or not latest_version_available %}header_info{% else %}{% endif %} {% if isPiwikDemo %}isPiwikDemo{% else %}piwikTopControl{% endif %}"
         >
 
     <a class="title" href="#">
         {% if isPiwikDemo %}
             {{ 'General_YouAreViewingDemoShortMessage'|translate }}
         {% elseif latest_version_available %}
+            <span class="icon-warning"></span>
             {{ 'General_NewUpdatePiwikX'|translate(latest_version_available) }}
         {% elseif isSuperUser and adminMenu is defined and adminMenu %}
             {{ updateCheck|raw }}

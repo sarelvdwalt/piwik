@@ -45,7 +45,7 @@
                         return menuItems;
                     }
 
-                    $rootElement.find('#firstNavBar a').each(function (index, element) {
+                    $rootElement.find('#topRightBar a').each(function (index, element) {
                         var text = trim($(element).text());
 
                         if (text) {

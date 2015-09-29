@@ -140,10 +140,10 @@
 .icon-locked-2:before {
     content: "\e626";
 }
-.icon-locked:before {
+.icon-locked-3:before {
     content: "\e627";
 }
-.icon-locked-3:before {
+.icon-locked:before {
     content: "\e628";
 }
 .icon-locked-4:before {
@@ -225,10 +225,10 @@
     content: "\e640";
 }
 .icon-user-add:before {
-    content: "\e642";
+    content: "\e641";
 }
 .icon-user:before {
-    content: "\e641";
+    content: "\e642";
 }
 .icon-play:before {
     content: "\e643";
@@ -244,4 +244,16 @@
 }
 .icon-sign-out:before {
     content: "\e647";
+}
+.icon-sign-in:before {
+	content: "\e648";
+}
+.icon-menu-hamburger:before {
+	content: "\e649";
+}
+.icon-more-horiz:before {
+	content: "\e64a";
+}
+.icon-more-verti:before {
+	content: "\e64b";
 }
