@@ -32,6 +32,14 @@
       }
     }
 
+    .icon:not(.icon-fixed) {
+      float: right;
+      &:after {
+        clear:right;
+        content: ' ';
+      }
+    }
+
     &:hover, &:focus {
       text-decoration: none;
     }
@@ -46,13 +54,6 @@
   &.expanded {
     .dropdown {
       display: block;
-    }
-    .icon:not(.icon-fixed) {
-      float: right;
-      &:after {
-        clear:right;
-        content: ' ';
-      }
     }
   }
 }

@@ -20,8 +20,8 @@
         {% if isPiwikDemo %}
             {{ 'General_YouAreViewingDemoShortMessage'|translate }}
         {% elseif latest_version_available %}
-            <span class="icon-warning"></span>
             {{ 'General_NewUpdatePiwikX'|translate(latest_version_available) }}
+            <span class="icon-warning"></span>
         {% elseif isSuperUser and adminMenu is defined and adminMenu %}
             {{ updateCheck|raw }}
         {% endif %}

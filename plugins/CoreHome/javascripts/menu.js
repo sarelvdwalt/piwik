@@ -118,6 +118,7 @@ menu.prototype =
                 return false;
             }
 
+            var found = false;
             for (var key in params) {
                 if (!params.hasOwnProperty(key)
                     || !params[key]
@@ -136,9 +137,12 @@ menu.prototype =
                 if (actual != params[key]) {
                     return false;
                 }
+
+                found = true;
+                // at least one param must match. Otherwise all menu items might be highlighted if params[key] = null;
             }
 
-            return true;
+            return found;
         });
 
         $activeLink.closest('li').addClass('sfActive');
