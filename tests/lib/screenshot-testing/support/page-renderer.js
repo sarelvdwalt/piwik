@@ -161,19 +161,18 @@ PageRenderer.prototype._makeSurePositionIsInViewPort = function (width, height) 
 
     var update = false;
 
-    if (width >= currentWidth && width > 0) {
+    if (width && width > 0 && width >= currentWidth) {
         currentWidth = width + 50;
         update = true;
     }
 
-    if (height >= currentHeight && height > 0) {
+    if (height && height > 0 && height >= currentHeight) {
         currentHeight = height + 50;
         update = true;
     }
 
     if (update) {
-        this.setViewportSize(currentWidth, currentHeight);
-        this._setCorrectViewportSize();
+        this._setCorrectViewportSize({width: currentWidth, height: currentHeight});
     }
 };
 
@@ -617,8 +616,10 @@ PageRenderer.prototype._waitForNextEvent = function (events, callback, i, waitTi
     }, waitTime);
 };
 
-PageRenderer.prototype._setCorrectViewportSize = function () {
-    var viewportSize = {width: this._getViewportWidth(), height: this._getViewportHeight()};
+PageRenderer.prototype._setCorrectViewportSize = function (viewportSize) {
+    if (!viewportSize) {
+        viewportSize = {width: this._getViewportWidth(), height: this._getViewportHeight()};
+    }
 
     this.webpage.viewportSize = viewportSize;
     var height = Math.max(viewportSize.height, this.webpage.evaluate(function() {
