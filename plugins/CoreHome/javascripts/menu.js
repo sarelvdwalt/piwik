@@ -28,6 +28,8 @@ menu.prototype =
         }
 
         if (!$('#content.admin').size()) {
+            $('#secondNavBar').removeClass('open fadeInLeft');
+
             broadcast.propagateAjax( $(this).attr('href').substr(1) );
 
             return false;
@@ -84,6 +86,21 @@ menu.prototype =
         });
 
         this.menuNode.find('a.item').click(this.onItemClick);
+
+        var self = this;
+        $('#header .toggle-second-menu').click(function () {
+            self.menuNode.toggleClass('open fadeInLeft');
+            return;
+            if (1) {
+                self.menuNode.fadeIn({complete: function () {
+                    self.menuNode.removeClass('open');
+                }});
+            } else {
+                self.menuNode.fadeIn({complete: function () {
+                    self.menuNode.removeClass('open');
+                }});
+            }
+        });
     },
 
     activateMenu: function (module, action, params) {
