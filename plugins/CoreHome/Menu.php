@@ -32,19 +32,19 @@ class Menu extends \Piwik\Plugin\Menu
 
         if (Piwik::isUserIsAnonymous()) {
             if (Plugin\Manager::getInstance()->isPluginActivated('Feedback')) {
-                $menu->addItem($login, null, array('module' => 'Feedback', 'action' => 'index'), 970, $login);
+                $menu->addItem($login, null, array('module' => 'Feedback', 'action' => 'index'), 1970, $login);
             } else {
-                $menu->addItem($login, null, array('module' => 'API', 'action' => 'listAllAPI'), 970, $login);
+                $menu->addItem($login, null, array('module' => 'API', 'action' => 'listAllAPI'), 1970, $login);
             }
         } else {
-            $menu->addItem($login, null, array('module' => 'UsersManager', 'action' => 'userSettings'), 970, $login);
+            $menu->addItem($login, null, array('module' => 'UsersManager', 'action' => 'userSettings'), 1970, $login);
         }
 
         $module = $this->getLoginModule();
         if (Piwik::isUserIsAnonymous()) {
-            $menu->addItem('Login_LogIn', null, array('module' => $module, 'action' => false), 1000);
+            $menu->addItem('Login_LogIn', null, array('module' => $module, 'action' => false), 2000);
         } else {
-            $menu->addItem('Sign out', null, array('module' => $module, 'action' => 'logout', 'idSite' => null), 1000, 'Sign out');
+            $menu->addItem('Sign out', null, array('module' => $module, 'action' => 'logout', 'idSite' => null), 2000, 'Sign out');
         }
     }
 

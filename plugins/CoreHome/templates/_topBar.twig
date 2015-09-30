@@ -1,4 +1,37 @@
 {{ postEvent("Template.beforeTopBar", userAlias, userLogin, topMenu, userMenu) }}
+<ul class="navbar-left">
+
+    {% macro menuItemLabel(label) %}
+        {% if label starts with 'icon-' %}
+            <span class="{{ label }}"/>
+        {% else %}
+            {{ label|translate }}
+        {% endif %}
+    {% endmacro %}
+
+    {% macro topMenuItem(label, menu, currentModule, currentAction) %}
+        {% if menu._html is defined %}
+            {{ menu._html|raw }}
+        {% else %}
+            <a {% if menu._tooltip is defined %}title="{{ menu._tooltip }}"{% endif %}
+               class="topBarElem {% if (menu._url.module == currentModule and (menu._url.action is empty or menu._url.action == currentAction)) %}active{% endif %}"
+               id="topmenu-{{ menu._url.module|lower }}"
+               href="index.php{{ menu._url|urlRewriteWithParameters }}">{{ _self.menuItemLabel(label) }}</a>
+        {% endif %}
+    {% endmacro %}
+
+    {% if topMenuModule is not defined %}
+        {% set topMenuModule = currentModule %}
+        {% set topMenuAction = currentAction %}
+    {% endif %}
+
+    {% spaceless %}
+        {% for label,menu in topMenu if menu._order < 1000 %}
+            <li>{{ _self.topMenuItem(label, menu, topMenuModule, topMenuAction) }}</li>
+        {% endfor %}
+    {% endspaceless %}
+
+</ul>
 <ul class="navbar-right">
 
     {% macro menuItemLabel(label) %}
@@ -26,7 +59,7 @@
     {% endif %}
 
     {% spaceless %}
-        {% for label,menu in topMenu %}
+        {% for label,menu in topMenu if menu._order >= 1000 %}
             <li>{{ _self.topMenuItem(label, menu, topMenuModule, topMenuAction) }}</li>
         {% endfor %}
     {% endspaceless %}
