@@ -11,6 +11,7 @@ namespace Piwik\Plugins\Goals\Reports;
 use Piwik\Common;
 use Piwik\DataTable;
 use Piwik\Metrics\Formatter;
+use Piwik\NumberFormatter;
 use Piwik\Piwik;
 use Piwik\Plugin;
 use Piwik\Plugin\ViewDataTable;
@@ -83,11 +84,27 @@ class Get extends Base
             $idGoal = Common::getRequestVar('idGoal', 0, 'int');
 
             $formatter = new Formatter();
-            $view->config->filters[] = function (DataTable $table) use ($formatter, $idSite) {
+            $numberFormatter = NumberFormatter::getInstance();
+            $view->config->filters[] = function (DataTable $table) use ($formatter, $numberFormatter, $idSite) {
                 $firstRow = $table->getFirstRow();
                 if ($firstRow) {
                     $revenue = $firstRow->getColumn('revenue');
                     $firstRow->setColumn('revenue', $formatter->getPrettyMoney($revenue, $idSite));
+
+                    $conversionRate = $firstRow->getColumn('conversion_rate');
+                    if (false !== $conversionRate) {
+                        $firstRow->setColumn('conversion_rate', $numberFormatter->formatPercent($conversionRate, $precision = 1));
+                    }
+
+                    $conversions = $firstRow->getColumn('nb_conversions');
+                    if (false !== $conversions) {
+                        $firstRow->setColumn('nb_conversions', $numberFormatter->formatNumber($conversions));
+                    }
+
+                    $visitsConverted = $firstRow->getColumn('nb_visits_converted');
+                    if (false !== $visitsConverted) {
+                        $firstRow->setColumn('nb_visits_converted', $numberFormatter->formatNumber($visitsConverted));
+                    }
                 }
             };
 
